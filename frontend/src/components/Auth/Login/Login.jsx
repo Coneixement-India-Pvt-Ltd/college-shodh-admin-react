@@ -18,7 +18,8 @@ const Login = () => {
     })
       .then((response) => {
         if (response.data.status) {
-          navigate("/");
+          console.log("Login successful, navigating to /dashboard");
+          navigate("/dashboard");
         }
       })
       .catch((error) => {
