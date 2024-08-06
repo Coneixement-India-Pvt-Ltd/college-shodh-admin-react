@@ -6,16 +6,16 @@ const Home = () => {
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
 
-  const handleLogout = () => {
-    axios.get("http://localhost:3000/auth/logout")
-    .then(res => {
-      if(res.data.status) {
-        navigate('/login')
-      }
-    }).catch(err => {
-      console.error(err);  
-  })
-  }
+  // const handleLogout = () => {
+  //   axios.get("http://localhost:3000/auth/logout")
+  //   .then(res => {
+  //     if(res.data.status) {
+  //       navigate('/login')
+  //     }
+  //   }).catch(err => {
+  //     console.error(err);  
+  // })
+  // }
 
   return (
     <>
@@ -25,17 +25,26 @@ const Home = () => {
 
       <button>
         <Link
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-3"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-3 mt-5"
           to="/dashboard"
         >
           Dashboard
         </Link>
       </button>
 
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      <button>
+        <Link
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          to="/login"
+        >
+          Login
+        </Link>
+      </button>
+{/* 
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-3"
       onClick={handleLogout}>
         Logout
-      </button>
+      </button> */}
     </>
   );
 };
