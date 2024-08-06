@@ -149,6 +149,7 @@ const verifyUser = async (req, res, next) => {
     // return res.json(error);
     return res.status(401).json({ status: false, message: "Unauthorized" });
   }
+  //neew
 };
 
 router.get("/verify", verifyUser, (req, res) => {
@@ -161,3 +162,4 @@ router.get("/logout", (req, res) => {
 });
 
 export { router as UserRouter };
+S
