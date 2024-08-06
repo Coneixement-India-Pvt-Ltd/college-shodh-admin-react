@@ -120,24 +120,20 @@ const verifyUser = async (req, res, next) => {
     const decoded = await jwt.verify(token, process.env.JWT_SECRET);
     if (decoded) {
       next();
-    } 
+    }
   } catch (error) {
     // return res.json(error);
     return res.status(401).json({ status: false, message: "Unauthorized" });
-
   }
 };
 
 router.get("/verify", verifyUser, (req, res) => {
   return res.json({ status: true, message: "Authorized" });
-  
 });
-
 
 router.get("/logout", (req, res) => {
   res.clearCookie("token");
-  return res.json({ status: true});
+  return res.json({ status: true });
 });
-
 
 export { router as UserRouter };
