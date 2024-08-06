@@ -111,14 +111,38 @@ router.post("/reset-password/:token", async (req, res) => {
   }
 });
 
+// const verifyUser = async (req, res, next) => {
+//   try {
+//     const token = req.cookies.token;
+//     if (!token) {
+//       return res.json({ status: false, message: "Unauthorized" });
+//     }
+//     const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+//     if (decoded) {
+//       next();
+//     } 
+//   } catch (error) {
+//     return res.json(error);
+//     // return res.status(401).json({ status: false, message: "Unauthorized" });
+
+//   }
+// };
+
+// router.get("/verify", verifyUser, (req, res) => {
+//   return res.json({ status: true, message: "Authorized" });
+  
+// });
+
 const verifyUser = async (req, res, next) => {
   try {
     const token = req.cookies.token;
     if (!token) {
-      return res.json({ status: false, message: "Unauthorized" });
+      return res.status(401).json({ status: false, message: "Unauthorized" });
     }
-    const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     if (decoded) {
+      req.user = decoded; // Attach the decoded token payload to the request object
       next();
     }
   } catch (error) {
