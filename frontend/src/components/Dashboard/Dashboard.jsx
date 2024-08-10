@@ -12,7 +12,7 @@ const Dashboard = () => {
             if(res.data.status) {
                 // navigate("/dashboard");
             } else {
-                navigate('/')
+                navigate('/login')
             }
 
         })
