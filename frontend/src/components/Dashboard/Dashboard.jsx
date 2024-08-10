@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "./Navbar";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -33,14 +34,15 @@ const Dashboard = () => {
 
 
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <Navbar />
+    // <div>
+    //   <h1>Dashboard</h1>
 
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      onClick={handleLogout}>
-        Logout
-      </button>
-    </div>
+    //   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    //   onClick={handleLogout}>
+    //     Logout
+    //   </button>
+    // </div>
   );
 };
 
