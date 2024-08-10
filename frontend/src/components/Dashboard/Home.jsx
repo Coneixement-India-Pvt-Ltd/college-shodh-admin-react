@@ -16,7 +16,7 @@ const Home = () => {
   //     console.error(err);  
   // })
   // }
-
+ 
   return (
     <>
       <div className="font-medium text-2xl text-orange-600">
