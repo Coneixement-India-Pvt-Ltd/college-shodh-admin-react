@@ -8,8 +8,8 @@ const CollegesPage = () => {
   return (
     <div>
       <Navbar />
-      <Card />
       <Sidebar />
+      <Card />
       
     </div>
   )

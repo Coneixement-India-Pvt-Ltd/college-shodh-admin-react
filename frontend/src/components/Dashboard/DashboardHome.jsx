@@ -23,7 +23,7 @@ const DashboardHome = () => {
                 </button>
               </div>
             </div>
-            <div className="h-96 mb-4 rounded bg-gray-200 dark:bg-gray-800">
+            <div className="h-80 mb-2 rounded bg-gray-200 dark:bg-gray-800">
               <p className="text-2xl text-gray-700 dark:text-gray-500 p-2">
                 Recent Activity
               </p>
