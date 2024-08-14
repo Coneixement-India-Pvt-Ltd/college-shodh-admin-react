@@ -5,8 +5,10 @@ import Home from './components/Home';
 import ForgotPassword from './components/Auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './components/Auth/ForgotPassword/ResetPassword';
 import AdminPage from './components/Admin_panel/AdminPage';
-import DashboardPage from './components/Dashboard/DashboardPage';
 import CollegesPage from './components/Colleges/CollegesPage';
+import InboxPage from './components/Inbox/InboxPage';
+import UsersPage from './components/Users/UsersPage';
+import ProductPage from './components/Products/ProductPage';
 
 function App() {
   return (
@@ -19,6 +21,9 @@ function App() {
         <Route path="/resetPassword/:token" element={<ResetPassword />} />
         <Route path="/dashboard" element={<AdminPage/>} />
         <Route path="/dashboard/college" element={<CollegesPage/>} />
+        <Route path="/dashboard/inbox" element={<InboxPage/>} />
+        <Route path="/dashboard/users" element={<UsersPage/>} />
+        <Route path="/dashboard/products" element={<ProductPage/>} />
         
       </Routes>
       
