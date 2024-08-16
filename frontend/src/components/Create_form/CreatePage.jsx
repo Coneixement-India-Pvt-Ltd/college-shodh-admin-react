@@ -1,14 +1,16 @@
 import React from 'react'
 import Navbar from '../Admin_panel/Navbar'
-import Inbox from './Inbox'
+import Create from './Create'
 import Sidebar from '../Admin_panel/Sidebar'
+import CreateBulk from './CreateBulk'
 
 const InboxPage = () => {
   return (
     <>
     <Navbar />
     <Sidebar />
-    <Inbox />
+    <CreateBulk />
+    <Create />
     </>
   )
 }
