@@ -12,8 +12,8 @@ import { IoNewspaperOutline } from "react-icons/io5";
 
 const Card = () => {
   return (
-    <div className="ml-64 mt-20 p-4">
-      <h1>This is Card</h1>
+    <div className="ml-64 mt-10 p-4">
+      <h1 className="text-xl font-bold text-gray-900 text-left ml-20 mb-4">Colleges</h1>
 
       <div
         id="college-card"
