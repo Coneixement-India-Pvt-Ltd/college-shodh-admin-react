@@ -10,27 +10,18 @@ const Dashboard = () => {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get("http://localhost:3000/auth/verify").then((res) => {
-      if (res.data.status) {
-        // navigate("/dashboard");
+    axios.get("http://localhost:3000/auth/verify")
+    .then((res) => {
+      if (res.data.status) { 
+        navigate("/dashboard");
       } else {
         navigate("/login");
       }
+    })
+    .catch((err) => {
+      console.error(err);
     });
   }, []);
-
-  const handleLogout = () => {
-    axios
-      .get("http://localhost:3000/auth/logout")
-      .then((res) => {
-        if (res.data.status) {
-          navigate("/");
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
 
   return (
     <>
