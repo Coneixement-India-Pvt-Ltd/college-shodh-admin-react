@@ -12,12 +12,12 @@ import { IoNewspaperOutline } from "react-icons/io5";
 
 const Card = () => {
   return (
-    <div className="ml-64 mt-10 p-4">
+    <div className="ml-64 p-4">
       <h1 className="text-xl font-bold text-gray-900 text-left ml-20 mb-4">Colleges</h1>
 
       <div
         id="college-card"
-        className="border-b border-gray-300 border rounded-lg p-2 pl-6 pr-6 mb-5 mr-32 ml-20 hover:shadow-2xl transition-shadow"
+        className="border-b border-gray-300 border rounded-lg p-2 pl-6 pr-6 mb-5 mr-12 ml-20 hover:shadow-2xl transition-shadow"
       >
         <h1 className="text-xl font-bold text-gray-900 text-left">
           Sinhgad College of Engineering
@@ -76,15 +76,23 @@ const Card = () => {
           </div>
 
           <div className="flex justify-end mt-2 ml-auto mb-1">
-            <Link to="">
-              <button
-                className="text-white rounded-lg p-2"
-                style={{ backgroundColor: "blue" }}
-              >
-                Know more
-              </button>
-            </Link>
-          </div>
+              <Link to="">
+                  <button
+                    className="text-white rounded-lg p-2 w-28"
+                    style={{ backgroundColor: "orange" }}
+                  >
+                  Edit
+                  </button>
+                </Link>
+                <Link to="">
+                  <button
+                    className="text-white rounded-lg p-2 w-28 ml-3"
+                    style={{ backgroundColor: "blue" }}
+                  >
+                  Delete
+                  </button>
+                </Link>
+            </div>
         </div>
       </div>
     </div>
