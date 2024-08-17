@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Signup/Signup.css";
-import Axios from "axios";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -9,16 +9,15 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  Axios.defaults.withCredentials = true;
+  axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:3000/auth/login", {
+    axios.post("http://localhost:3000/auth/login", {
       email,
       password,
     })
       .then((response) => {
         if (response.data.status) {
-          console.log("Login successful, navigating to /dashboard");
           navigate("/dashboard");
         }
       })

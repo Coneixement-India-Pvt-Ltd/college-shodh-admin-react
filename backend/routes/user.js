@@ -1,12 +1,23 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
 import bcrypt from "bcryptjs";
-const router = express.Router();
 import { User } from "../models/User.js";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
-import dotenv from "dotenv";
 
-dotenv.config();
+const app = express();
+const router = express.Router();
+
+// import {authenticateToken} from "../middleware.js";
+
+//Middleware
+app.use(cookieParser());
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 router.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
@@ -52,6 +63,7 @@ router.post("/login", async (req, res) => {
   return res.json({ status: true, message: "Login successful" });
 });
 
+// forget Password Route
 router.post("/forgot-password", async (req, res) => {
   const { email } = req.body;
   try {
@@ -111,54 +123,34 @@ router.post("/reset-password/:token", async (req, res) => {
   }
 });
 
-// const verifyUser = async (req, res, next) => {
-//   try {
-//     const token = req.cookies.token;
-//     if (!token) {
-//       return res.json({ status: false, message: "Unauthorized" });
-//     }
-//     const decoded = await jwt.verify(token, process.env.JWT_SECRET);
-//     if (decoded) {
+// const authenticateToken = (req, res, next) => {
+//   console.log("Cookies: ", req.cookies); // Log the cookies to see what is received
+//   const token = req.cookies?.token; // Optional chaining to avoid the error
+//   if (!token) {
+//     return res.json({ Error: "You are not Authenticated" });
+//   } else {
+//     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+//       if (err) {
+//         return res.json({ Error: "You are not Authenticated" });
+//       }
+//       req.user = user;
 //       next();
-//     } 
-//   } catch (error) {
-//     return res.json(error);
-//     // return res.status(401).json({ status: false, message: "Unauthorized" });
-
+//     });
 //   }
 // };
 
-// router.get("/verify", verifyUser, (req, res) => {
-//   return res.json({ status: true, message: "Authorized" });
-  
-// });
-
-const verifyUser = async (req, res, next) => {
-  try {
-    const token = req.cookies.token;
-    if (!token) {
-      return res.status(401).json({ status: false, message: "Unauthorized" });
-    }
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    if (decoded) {
-      req.user = decoded; // Attach the decoded token payload to the request object
-      next();
-    }
-  } catch (error) {
-    // return res.json(error);
-    return res.status(401).json({ status: false, message: "Unauthorized" });
-  }
-  //neew
-};
-
-router.get("/verify", verifyUser, (req, res) => {
+router.get("/verify",(req, res) => {
+  console.log(res.json);
   return res.json({ status: true, message: "Authorized" });
 });
 
 router.get("/logout", (req, res) => {
   res.clearCookie("token");
   return res.json({ status: true });
+});
+
+router.get("/dashboard",(req, res) => {
+  res.json({ message: "Welcome to the dashboard" });
 });
 
 export { router as UserRouter };
