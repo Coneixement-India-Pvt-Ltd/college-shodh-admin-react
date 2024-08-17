@@ -10,6 +10,7 @@ const CollegesPage = () => {
       <Navbar />
       <Sidebar />
       <Filter />
+      <hr />
       <Card />
       
     </div>
