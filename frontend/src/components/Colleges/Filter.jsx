@@ -1,139 +1,221 @@
+
+import React, { useState, useEffect, useRef } from "react";
+
 const Options = [
-    { text: "B. Arch", course: "Architecture" },
-    { text: "B. Pharm", course: "Pharmacy" },
-    { text: "BCA", course: "BCA" },
-    { text: "BE/B. Tech", course: "Engineering" },
-    { text: "B. Sc", course: "Science" },
-  ];
+  { text: "B. Arch", course: "Architecture" },
+  { text: "B. Pharm", course: "Pharmacy" },
+  { text: "BCA", course: "BCA" },
+  { text: "BE/B. Tech", course: "Engineering" },
+  { text: "B. Sc", course: "Science" },
+];
 
-  
+function Filter() {
+  const [stateOpen, setStateOpen] = useState(false);
+  const [cityOpen, setCityOpen] = useState(false);
+  const [naacOpen, setNaacOpen] = useState(false);
+  const [accreditationOpen, setAccreditationOpen] = useState(false);
 
-  function Filter(){
-    return(
-        <>
-        <div className="ml-80 mt-20 p-4">
-            {Options.map((option, index) => (
-            <button
-                className="h-12 w-36 ml-4 bg-[#569df4] border border-black-100 rounded-md hover:drop-shadow-lg"
-                key={index}
-            >
-                <span className="hover:underline text-white font-medium">
-                {option.text}
-                </span>
-            </button>
-            ))}
+  // Refs for the dropdown containers
+  const stateRef = useRef(null);
+  const cityRef = useRef(null);
+  const naacRef = useRef(null);
+  const accreditationRef = useRef(null);
+
+  // Close dropdowns if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (stateRef.current && !stateRef.current.contains(event.target)) {
+        setStateOpen(false);
+      }
+      if (cityRef.current && !cityRef.current.contains(event.target)) {
+        setCityOpen(false);
+      }
+      if (naacRef.current && !naacRef.current.contains(event.target)) {
+        setNaacOpen(false);
+      }
+      if (accreditationRef.current && !accreditationRef.current.contains(event.target)) {
+        setAccreditationOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <>
+      <div className="ml-80 mt-20 p-4">
+        {Options.map((option, index) => (
+          <button
+            className="h-12 w-36 ml-4 bg-[#569df4] border border-black-100 rounded-md hover:drop-shadow-lg"
+            key={index}
+          >
+            <span className="hover:underline text-white font-medium">
+              {option.text}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      <div className="flex ml-80 p-4 space-x-4">
+        {/* State Dropdown */}
+        <div className="relative" ref={stateRef}>
+          <button
+            className="rounded-none border border-gray-400 bg-white text-gray-700 px-4 py-2 text-left h-12 w-52 hover:bg-gray-100"
+            onClick={() => setStateOpen(!stateOpen)}
+          >
+            Select State
+          </button>
+          {stateOpen && (
+            <div className="absolute bg-white border rounded-md shadow-lg mt-2 w-full">
+              <ul className="max-h-60 overflow-y-auto">
+                {[
+                  "Andhra Pradesh",
+                  "Arunachal Pradesh",
+                  "Assam",
+                  "Bihar",
+                  "Chhattisgarh",
+                  "Goa",
+                  "Gujarat",
+                  "Haryana",
+                  "Himachal Pradesh",
+                  "Jharkhand",
+                  "Karnataka",
+                  "Kerala",
+                  "Madhya Pradesh",
+                  "Maharashtra",
+                  "Manipur",
+                  "Meghalaya",
+                  "Mizoram",
+                  "Nagaland",
+                  "Odisha",
+                  "Punjab",
+                  "Rajasthan",
+                  "Sikkim",
+                  "Tamil Nadu",
+                  "Telangana",
+                  "Tripura",
+                  "Uttar Pradesh",
+                  "Uttarakhand",
+                  "West Bengal",
+                ].map((state, index) => (
+                  <li key={index} className="px-4 py-2">
+                    <label className="flex items-center">
+                      <input type="checkbox" className="mr-2" value={state} />
+                      {state}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
-        <div className="flex ml-80 p-4">
-                <div className="">
-                    {/* <label for="HeadlineAct" class="block text-sm font-medium text-gray-900"> State </label> */}
-
-                    <select
-                        name="State"
-                        id="State"
-                        class="rounded-lg border-gray-300 text-gray-700 sm:text-sm h-12 w-48 ml-4"
-                    >
-                        <option value="">Select State</option>
-                        <option value="Andhra Pradesh">Andhra Pradesh</option>
-                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                        <option value="Assam">Assam</option>
-                        <option value="Bihar">Bihar</option>
-                        <option value="Chhattisgarh">Chhattisgarh</option>
-                        <option value="Goa">Goa</option>
-                        <option value="Gujarat">Gujarat</option>
-                        <option value="Haryana">Haryana</option>
-                        <option value="Himachal Pradesh">Himachal Pradesh</option>
-                        <option value="Jharkhand">Jharkhand</option>
-                        <option value="Karnataka">Karnataka</option>
-                        <option value="Kerala">Kerala</option>
-                        <option value="Madhya Pradesh">Madhya Pradesh</option>
-                        <option value="Maharashtra">Maharashtra</option>
-                        <option value="Manipur">Manipur</option>
-                        <option value="Meghalaya">Meghalaya</option>
-                        <option value="Mizoram">Mizoram</option>
-                        <option value="Nagaland">Nagaland</option>
-                        <option value="Odisha">Odisha</option>
-                        <option value="Punjab">Punjab</option>
-                        <option value="Rajasthan">Rajasthan</option>
-                        <option value="Sikkim">Sikkim</option>
-                        <option value="Tamil Nadu">Tamil Nadu</option>
-                        <option value="Telangana">Telangana</option>
-                        <option value="Tripura">Tripura</option>
-                        <option value="Uttar Pradesh">Uttar Pradesh</option>
-                        <option value="Uttarakhand">Uttarakhand</option>
-                        <option value="West Bengal">West Bengal</option>
-                    </select>
-                </div>
-
-                <div className="">
-                    {/* <label for="HeadlineAct" class="block text-sm font-medium text-gray-900">City </label> */}
-
-                    <select
-                        name="City"
-                        id="City"
-                        class=" rounded-lg border-gray-300 text-gray-700 sm:text-sm h-12 w-48 ml-4"
-                    >
-                        <option value="">Select City</option>
-                        <option value="Bangalore">Bangalore</option>
-                        <option value="Delhi">Delhi</option>
-                        <option value="Mumbai">Mumbai</option>
-                        <option value="Pune">Pune</option>
-                        <option value="Hyderabad">Hyderabad</option>
-                        <option value="Chennai">Chennai</option>
-                        <option value="Kolkata">Kolkata</option>
-                        <option value="Ahmedabad">Ahmedabad</option>
-                        <option value="Jaipur">Jaipur</option>
-                        <option value="Lucknow">Lucknow</option>
-                        <option value="Kanpur">Kanpur</option>
-                        <option value="Indore">Indore</option>
-                        <option value="Coimbatore">Coimbatore</option>
-                        <option value="Chandigarh">Chandigarh</option>
-                        <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-                        <option value="Nagpur">Nagpur</option>
-                        <option value="Patna">Patna</option>
-                        <option value="Bhubaneswar">Bhubaneswar</option>
-                        <option value="Visakhapatnam">Visakhapatnam</option>
-                        <option value="Mysore">Mysore</option>
-                    </select>
-                </div>
-
-                <div className="">
-                    {/* <label for="HeadlineAct" class="block text-sm font-medium text-gray-900"> NAAC Rating </label> */}
-
-                    <select
-                        name="NAAC"
-                        id="NAAC"
-                        class=" rounded-lg border-gray-300 text-gray-700 sm:text-sm h-12 w-48 ml-4"
-                    >
-                        <option value="">Select Rating</option>
-                        <option value="A++">A++</option>
-                        <option value="A+">A+</option>
-                        <option value="A">A</option>
-                        <option value="B++">B++</option>
-                        <option value="B+">B+</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                    </select>
-                </div>
-
-                <div className="">
-                    {/* <label for="HeadlineAct" class="block text-sm font-medium text-gray-900"> NBA Accredated </label> */}
-
-                    <select
-                        name="Acrredation"
-                        id="Accredation"
-                        class=" rounded-lg border-gray-300 text-gray-700 sm:text-sm h-12 w-48 ml-4"
-                    >
-                        <option value="">Select Accredation</option>
-                        <option value="JM">Accredated</option>
-                        <option value="JM">Non Accredated</option>
-                    </select>
-                </div>
-
+        {/* City Dropdown */}
+        <div className="relative" ref={cityRef}>
+          <button
+            className="rounded-none border border-gray-400 bg-white text-gray-700 px-4 py-2 text-left h-12 w-52 hover:bg-gray-100"
+            onClick={() => setCityOpen(!cityOpen)}
+          >
+            Select City
+          </button>
+          {cityOpen && (
+            <div className="absolute bg-white border rounded-md shadow-lg mt-2 w-full">
+              <ul className="max-h-60 overflow-y-auto">
+                {[
+                  "Bangalore",
+                  "Delhi",
+                  "Mumbai",
+                  "Pune",
+                  "Hyderabad",
+                  "Chennai",
+                  "Kolkata",
+                  "Ahmedabad",
+                  "Jaipur",
+                  "Lucknow",
+                  "Kanpur",
+                  "Indore",
+                  "Coimbatore",
+                  "Chandigarh",
+                  "Thiruvananthapuram",
+                  "Nagpur",
+                  "Patna",
+                  "Bhubaneswar",
+                  "Visakhapatnam",
+                  "Mysore",
+                ].map((city, index) => (
+                  <li key={index} className="px-4 py-2">
+                    <label className="flex items-center">
+                      <input type="checkbox" className="mr-2" value={city} />
+                      {city}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
-      </>
-    );
-  }
+        {/* NAAC Rating Dropdown */}
+        <div className="relative" ref={naacRef}>
+          <button
+            className="rounded-none border border-gray-400 bg-white text-gray-700 px-4 py-2 text-left h-12 w-52 hover:bg-gray-100"
+            onClick={() => setNaacOpen(!naacOpen)}
+          >
+            Select NAAC Rating
+          </button>
+          {naacOpen && (
+            <div className="absolute bg-white border rounded-md shadow-lg mt-2 w-full">
+              <ul className="max-h-60 overflow-y-auto">
+                {["A++", "A+", "A", "B++", "B+", "B", "C"].map(
+                  (rating, index) => (
+                    <li key={index} className="px-4 py-2">
+                      <label className="flex items-center">
+                        <input type="checkbox" className="mr-2" value={rating} />
+                        {rating}
+                      </label>
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
+          )}
+        </div>
 
-  export default Filter;
+        {/* Accreditation Dropdown */}
+        <div className="relative" ref={accreditationRef}>
+          <button
+            className="rounded-none border border-gray-400 bg-white text-gray-700 px-4 py-2 text-left h-12 w-52 hover:bg-gray-100"
+            onClick={() => setAccreditationOpen(!accreditationOpen)}
+          >
+            Select Accreditation
+          </button>
+          {accreditationOpen && (
+            <div className="absolute bg-white border border-gray-300 rounded-md shadow-lg mt-2 w-full">
+              <ul className="max-h-60 overflow-y-auto">
+                {["Accredited", "Non-Accredited"].map(
+                  (accreditation, index) => (
+                    <li key={index} className="px-4 py-2">
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          className="mr-2"
+                          value={accreditation}
+                        />
+                        {accreditation}
+                      </label>
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Filter;
