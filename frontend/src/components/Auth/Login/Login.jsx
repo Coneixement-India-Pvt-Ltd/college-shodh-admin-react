@@ -32,7 +32,7 @@ const Login = () => {
         <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
           <img
             alt=""
-            src="./background.jpg"
+            src="./images/background.jpg"
             className="absolute inset-0 h-full w-full object-cover opacity-50"
           />
 
@@ -40,7 +40,7 @@ const Login = () => {
             <a className="block text-white" href="#">
               <span className="sr-only">Home</span>
               <img
-                src="./collegeShodh.png"
+                src="./images/collegeShodh.png"
                 alt="College-Shodh Logo"
                 className="h-10 sm:h-12 object-cover"
                 style={{ borderRadius: "10%" }}
@@ -66,7 +66,7 @@ const Login = () => {
               <a className="block text-white" href="#">
                 <span className="sr-only">Home</span>
                 <img
-                  src="./collegeShodh.png"
+                  src="./images/collegeShodh.png"
                   alt="College-Shodh Logo"
                   className="h-10 sm:h-12 object-cover"
                   style={{ borderRadius: "10%" }}

@@ -149,7 +149,7 @@ const Sidebar = () => {
                 <span className="flex-1 ms-3 whitespace-nowrap">Products</span>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 to="/login"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -171,8 +171,8 @@ const Sidebar = () => {
                 </svg>
                 <span className="flex-1 ms-3 whitespace-nowrap">Sign In</span>
               </Link>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <Link
                 to="/"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -195,7 +195,7 @@ const Sidebar = () => {
                   Sign Up
                 </span>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </aside>
