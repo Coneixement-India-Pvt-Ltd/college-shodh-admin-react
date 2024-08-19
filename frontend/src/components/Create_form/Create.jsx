@@ -60,7 +60,7 @@ const Inbox = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="grid grid-cols-1 gap-4 ml-80 mr-20">
+      <div className="grid grid-cols-1 gap-4 ml-96 mr-40 mt-20">
         <div>
           <label className="block mb-2">College Name:</label>
           <input
@@ -904,9 +904,9 @@ const Inbox = () => {
             className="border p-2 mb-4 w-full"
             required
           />
+          <button type="submit" className="mb-4 bg-blue-600 p-2 rounded-md text-white">Create</button>
         </div>
       </div>
-      <button type="submit">Create</button>
     </form>
   );
 };

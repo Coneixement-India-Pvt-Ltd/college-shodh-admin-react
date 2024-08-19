@@ -79,7 +79,7 @@ const Card = () => {
               <Link to="">
                   <button
                     className="text-white rounded-lg p-2 w-28"
-                    style={{ backgroundColor: "orange" }}
+                    style={{ backgroundColor: "green" }}
                   >
                   Edit
                   </button>
@@ -87,7 +87,7 @@ const Card = () => {
                 <Link to="">
                   <button
                     className="text-white rounded-lg p-2 w-28 ml-3"
-                    style={{ backgroundColor: "blue" }}
+                    style={{ backgroundColor: "red" }}
                   >
                   Delete
                   </button>

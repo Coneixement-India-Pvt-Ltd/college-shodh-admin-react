@@ -13,7 +13,7 @@ const Dashboard = () => {
     axios.get("http://localhost:3000/auth/verify")
     .then((res) => {
       if (res.data.status) { 
-        navigate("/dashboard");
+        // navigate("/dashboard");
       } else {
         navigate("/login");
       }
