@@ -68,7 +68,7 @@ const Navbar = () => {
                 </svg>
               </button>
               <img
-                src="./collegeShodh.png"
+                src="./images/collegeShodh.png"
                 className="h-11 me-3"
                 alt="CollegeShodh Logo"
               />
@@ -101,13 +101,13 @@ const Navbar = () => {
                       className="text-sm text-gray-900 dark:text-white"
                       role="none"
                     >
-                      Neil Sims
+                      Admin
                     </p>
                     <p
                       className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
                       role="none"
                     >
-                      neil.sims@flowbite.com
+                      admin@gmail..com
                     </p>
                   </div>
                   <ul className="py-1" role="none">
@@ -126,7 +126,7 @@ const Navbar = () => {
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem"
                       >
-                        Settings
+                        Profile
                       </a>
                     </li>
                     <li>
@@ -135,7 +135,7 @@ const Navbar = () => {
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem"
                       >
-                        Earnings
+                        Settings
                       </a>
                     </li>
                     <li>

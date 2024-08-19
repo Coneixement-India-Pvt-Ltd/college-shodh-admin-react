@@ -10,10 +10,14 @@ import CreatePage from './components/Create_form/CreatePage';
 import UsersPage from './components/Users/UsersPage';
 import ProductPage from './components/Products/ProductPage';
 import AddBulkPage from './components/Add_bulk/AddBulkPage';
+import Navbar from './components/Admin_panel/Navbar';
+import Sidebar from './components/Admin_panel/Sidebar';
 
 function App() {
   return (
     <BrowserRouter>
+    {/* <Navbar /> */}
+    {/* <Sidebar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
@@ -26,9 +30,7 @@ function App() {
         <Route path="/dashboard/create-bulk" element={<AddBulkPage/>} />
         <Route path="/dashboard/users" element={<UsersPage/>} />
         <Route path="/dashboard/products" element={<ProductPage/>} />
-        
       </Routes>
-      
     </BrowserRouter>
   );
 }

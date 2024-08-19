@@ -1,13 +1,13 @@
 import React from "react";
 import Navbar from "../Admin_panel/Navbar";
 import Sidebar from "../Admin_panel/Sidebar";
-import Create from "./Create";
+import AddBulk from "./AddBulk";
 
 const AddBulkPage = () => {
   return <>
   <Navbar />
   <Sidebar />
-  <Create />
+  <AddBulk />
   </>;
 };
 
