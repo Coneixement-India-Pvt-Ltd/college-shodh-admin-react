@@ -139,8 +139,8 @@ router.post("/reset-password/:token", async (req, res) => {
 //   }
 // };
 
-router.get("/verify",(req, res) => {
-  console.log(res.json);
+router.get("/verify", (req, res) => {
+ //console.log(res.json);
   return res.json({ status: true, message: "Authorized" });
 });
 
@@ -149,7 +149,7 @@ router.get("/logout", (req, res) => {
   return res.json({ status: true });
 });
 
-router.get("/dashboard",(req, res) => {
+router.get("/dashboard", (req, res) => {
   res.json({ message: "Welcome to the dashboard" });
 });
 

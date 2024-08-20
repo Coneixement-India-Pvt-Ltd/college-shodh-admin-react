@@ -9,20 +9,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
 
-  useEffect(() => {
-    axios.get("http://localhost:3000/auth/verify")
-    .then((res) => {
-      if (res.data.status) { 
-        // navigate("/dashboard");
-      } else {
-        navigate("/login");
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  }, []);
-
   return (
     <>
       <Navbar />

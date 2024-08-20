@@ -9,23 +9,6 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true;
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post("http://localhost:3000/auth/login", {
-      email,
-      password,
-    })
-      .then((response) => {
-        if (response.data.status) {
-          navigate("/dashboard");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   return (
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">

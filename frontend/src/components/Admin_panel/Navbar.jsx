@@ -9,16 +9,7 @@ const Navbar = () => {
   // State to manage dropdown visibility
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  useEffect(() => {
-    axios.get("http://localhost:3000/auth/verify").then((res) => {
-      if (res.data.status) {
-        navigate("/dashboard");
-      } else {
-        navigate("/login");
-      }
-    });
-  }, []);
-
+  // Logout function
   const handleLogout = () => {
     axios
       .get("http://localhost:3000/auth/logout")
@@ -92,73 +83,73 @@ const Navbar = () => {
                   </button>
                 </div>
 
-                {dropdownOpen && ( <div
+                {dropdownOpen && (
+                  <div
                     className="absolute right-0 z-50 mt-72 mr-12 w-48 py-2 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
                     id="dropdown-user"
                   >
-                  <div className="px-4 py-3" role="none">
-                    <p
-                      className="text-sm text-gray-900 dark:text-white"
-                      role="none"
-                    >
-                      Admin
-                    </p>
-                    <p
-                      className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
-                      role="none"
-                    >
-                      admin@gmail..com
-                    </p>
+                    <div className="px-4 py-3" role="none">
+                      <p
+                        className="text-sm text-gray-900 dark:text-white"
+                        role="none"
+                      >
+                        Admin
+                      </p>
+                      <p
+                        className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
+                        role="none"
+                      >
+                        admin@gmail..com
+                      </p>
+                    </div>
+                    <ul className="py-1" role="none">
+                      <li>
+                        <a
+                          href="/dashboard"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          role="menuitem"
+                        >
+                          Dashboard
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          role="menuitem"
+                        >
+                          Profile
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          role="menuitem"
+                        >
+                          Settings
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                          role="menuitem"
+                          onClick={handleLogout}
+                        >
+                          Sign out
+                        </a>
+                      </li>
+                    </ul>
                   </div>
-                  <ul className="py-1" role="none">
-                    <li>
-                      <a
-                        href="/dashboard"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                      >
-                        Dashboard
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                      >
-                        Profile
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                      >
-                        Settings
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                        onClick={handleLogout}
-                      >
-                        Sign out
-                      </a>
-                    </li>
-                  </ul>
-                </div>)}
+                )}
               </div>
             </div>
           </div>
         </div>
       </nav>
-
     </div>
   );
 };
 
 export default Navbar;
-
