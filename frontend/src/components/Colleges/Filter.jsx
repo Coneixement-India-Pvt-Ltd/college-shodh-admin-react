@@ -59,7 +59,7 @@ function Filter() {
         ))}
       </div>
 
-      <div className="flex ml-80 p-4 space-x-4">
+      <div className="flex flex-wrap ml-80 justify-center sm:justify-start p-4 space-x-0 sm:space-x-2 gap-y-2 sm:gap-y-0">
         {/* State Dropdown */}
         <div className="relative" ref={stateRef}>
           <button
@@ -70,7 +70,7 @@ function Filter() {
           </button>
           {stateOpen && (
             <div className="absolute bg-white border rounded-md shadow-lg mt-2 w-full">
-              <ul className="max-h-60 overflow-y-auto">
+              <ul className="max-h-80 overflow-y-auto">
                 {[
                   "Andhra Pradesh",
                   "Arunachal Pradesh",
@@ -101,7 +101,7 @@ function Filter() {
                   "Uttarakhand",
                   "West Bengal",
                 ].map((state, index) => (
-                  <li key={index} className="px-4 py-2">
+                  <li key={index} className="px-2">
                     <label className="flex items-center">
                       <input type="checkbox" className="mr-2" value={state} />
                       {state}
@@ -123,7 +123,7 @@ function Filter() {
           </button>
           {cityOpen && (
             <div className="absolute bg-white border rounded-md shadow-lg mt-2 w-full">
-              <ul className="max-h-60 overflow-y-auto">
+              <ul className="max-h-80 overflow-y-auto">
                 {[
                   "Bangalore",
                   "Delhi",
@@ -146,7 +146,7 @@ function Filter() {
                   "Visakhapatnam",
                   "Mysore",
                 ].map((city, index) => (
-                  <li key={index} className="px-4 py-2">
+                  <li key={index} className="px-2">
                     <label className="flex items-center">
                       <input type="checkbox" className="mr-2" value={city} />
                       {city}
@@ -168,10 +168,10 @@ function Filter() {
           </button>
           {naacOpen && (
             <div className="absolute bg-white border rounded-md shadow-lg mt-2 w-full">
-              <ul className="max-h-60 overflow-y-auto">
+              <ul className="max-h-80 overflow-y-auto">
                 {["A++", "A+", "A", "B++", "B+", "B", "C"].map(
                   (rating, index) => (
-                    <li key={index} className="px-4 py-2">
+                    <li key={index} className="px-2">
                       <label className="flex items-center">
                         <input type="checkbox" className="mr-2" value={rating} />
                         {rating}
@@ -194,10 +194,10 @@ function Filter() {
           </button>
           {accreditationOpen && (
             <div className="absolute bg-white border border-gray-300 rounded-md shadow-lg mt-2 w-full">
-              <ul className="max-h-60 overflow-y-auto">
+              <ul className="max-h-80 overflow-y-auto">
                 {["Accredited", "Non-Accredited"].map(
                   (accreditation, index) => (
-                    <li key={index} className="px-4 py-2">
+                    <li key={index} className="px-2">
                       <label className="flex items-center">
                         <input
                           type="checkbox"
