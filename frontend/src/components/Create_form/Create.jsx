@@ -904,7 +904,13 @@ const Inbox = () => {
             className="border p-2 mb-4 w-full"
             required
           />
-          <button type="submit" className="mb-4 bg-blue-600 p-2 rounded-md text-white">Create</button>
+
+
+
+
+          {/* <button type="submit" className="mb-4 bg-blue-600 p-2 rounded-md text-white">Create</button> */}
+        
+        
         </div>
       </div>
     </form>

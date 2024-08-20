@@ -26,8 +26,8 @@ function App() {
         <Route path="/dashboard/college" element={<CollegesPage/>} />
         <Route path="/dashboard/create" element={<CreatePage/>} />
         <Route path="/dashboard/create-bulk" element={<AddBulkPage/>} />
-        <Route path="/dashboard/users" element={<UsersPage/>} />
-        <Route path="/dashboard/products" element={<ProductPage/>} />
+        {/* <Route path="/dashboard/users" element={<UsersPage/>} />
+        <Route path="/dashboard/products" element={<ProductPage/>} /> */}
       </Routes>
     </BrowserRouter>
   );
