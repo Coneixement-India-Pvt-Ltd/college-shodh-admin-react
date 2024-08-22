@@ -100,7 +100,7 @@ const Card = () => {
     };
   
   return (
-    <div className="pl-10 flex flex-col ml-48 mt-5 items-center ">
+    <div className="flex flex-col ml-64 mt-5 items-left ">
           {loading ? (
             <div className="flex justify-center items-center h-full w-full mt-72">
               <HashLoader 
