@@ -5,8 +5,8 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Preview from "./Preview";
 
-// import "./Add.css";
 
 const steps = ["Add College Form", "Preview", "Submit"];
 
@@ -41,6 +41,23 @@ export default function HorizontalLinearStepper() {
 
   const handleReset = () => {
     setActiveStep(0);
+    setFormData({
+      collegeName: "",
+      university: "",
+      program: "",
+      courses: "",
+      naac: "",
+      nbaApproved: "",
+      nirf: "",
+      address: "",
+      state: "",
+      courseFees: "",
+      intake: "",
+      faculty: "",
+      website: "",
+      contact: "",
+      email: "",
+    });
   };
 
   const handleChange = (e) => {
@@ -54,22 +71,37 @@ export default function HorizontalLinearStepper() {
   return (
     <div className="mt-24 ml-80 mr-16">
       <div>
-        <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: "100%" }} className="p-4">
           <Stepper activeStep={activeStep}>
             {steps.map((label, index) => (
               <Step key={label}>
-                <StepLabel>{label}</StepLabel>
+                <StepLabel>
+                  <Typography sx={{ fontSize: "1.75rem" }}>{label}</Typography>
+                </StepLabel>
               </Step>
             ))}
           </Stepper>
           {activeStep === steps.length ? (
             <React.Fragment>
-              <Typography className="text-center p-10">
-                All steps completed - you&apos;re finished
-              </Typography>
-              <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                <Box sx={{ flex: "1 1 auto" }} />
-                <Button onClick={handleReset}>Reset</Button>
+              <div className="p-36">
+                <div className="text-center p-16 border rounded bg-green-400">
+                  <strong>All steps completed - you&apos;re finished</strong>
+                </div>
+              </div>
+              <Box sx={{ textAlign: "right" }}>
+                <Button
+                  onClick={handleReset}
+                  sx={{
+                    backgroundColor: "#0056b3",
+                    color: "#FFFFFF",
+                    marginBottom: "16px",
+                    "&:hover": {
+                      backgroundColor: "#0A30C1",
+                    },
+                  }}
+                >
+                  Reset
+                </Button>
               </Box>
             </React.Fragment>
           ) : (
@@ -964,49 +996,14 @@ export default function HorizontalLinearStepper() {
               )}
 
               {/* PREVIEW PAGE */}
-              {activeStep === 1 && (
-                <Typography sx={{ mt: 2, mb: 1 }}>
-                  <div className="text-center">
-                    <strong>Preview:</strong>
-                    <br />
-                  </div>
-                  <strong>College Name:</strong> {formData.collegeName}
-                  <br />
-                  <strong>University:</strong> {formData.university}
-                  <br />
-                  <strong>Program:</strong> {formData.program}
-                  <br />
-                  <strong>Courses:</strong> {formData.courses}
-                  <br />
-                  <strong>NAAC:</strong> {formData.naac}
-                  <br />
-                  <strong>NBA Approved:</strong> {formData.nbaApproved}
-                  <br />
-                  <strong>NIRF:</strong> {formData.nirf}
-                  <br />
-                  <strong>Address:</strong> {formData.address}
-                  <br />
-                  <strong>State:</strong> {formData.state}
-                  <br />
-                  <strong>FEES:</strong> {formData.courseFees}
-                  <br />
-                  <strong>Intake:</strong> {formData.Intake}
-                  <br />
-                  <strong>Faculty:</strong> {formData.faculty}
-                  <br />
-                  <strong>Website:</strong> {formData.website}
-                  <br />
-                  <strong>Contact:</strong> {formData.contact}
-                  <br />
-                  <strong>Email:</strong> {formData.email}
-                  <br />
-                </Typography>
-              )}
+              {activeStep === 1 && <Preview formData={formData} />}
 
               {activeStep === 2 && (
-                <Typography className="text-center p-8">
-                  <strong>Submit your information.</strong>
-                </Typography>
+                <div className="p-36">
+                  <div className="text-center p-16 border-4 rounded">
+                    <strong>Submit your information.</strong>
+                  </div>
+                </div>
               )}
 
               <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
@@ -1014,12 +1011,30 @@ export default function HorizontalLinearStepper() {
                   color="inherit"
                   disabled={activeStep === 0}
                   onClick={handleBack}
-                  sx={{ mr: 1 }}
+                  sx={{
+                    mr: 1,
+                    backgroundColor: "#0969FF",
+                    color: "white",
+                    marginBottom: "50px",
+                    "&:hover": {
+                      backgroundColor: "#0A30C1",
+                    },
+                  }}
                 >
                   Back
                 </Button>
-                <Box sx={{ flex: "1 1 auto" }} />
-                <Button onClick={handleNext}>
+                <Box sx={{ flex: "1 1 auto" }} className="mb-5" />
+                <Button
+                  onClick={handleNext}
+                  sx={{
+                    backgroundColor: "#0969FF",
+                    marginBottom: "50px",
+                    color: "white",
+                    "&:hover": {
+                      backgroundColor: "#0A30C1",
+                    },
+                  }}
+                >
                   {activeStep === steps.length - 1 ? "Finish" : "Next"}
                 </Button>
               </Box>
