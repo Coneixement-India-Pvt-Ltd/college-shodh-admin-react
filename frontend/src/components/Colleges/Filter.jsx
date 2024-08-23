@@ -59,7 +59,7 @@ function Filter() {
         ))}
       </div>
 
-      <div className="flex flex-wrap ml-80 justify-center sm:justify-start p-4 space-x-0 sm:space-x-2 gap-y-2 sm:gap-y-0">
+      <div className="flex flex-wrap ml-80 justify-center sm:justify-start p-4 space-x-0 sm:space-x-2 gap-y-2 sm:gap-y-0 relative z-10 ">
         {/* State Dropdown */}
         <div className="relative" ref={stateRef}>
           <button
