@@ -186,7 +186,7 @@ const Card = () => {
                       </Button>
                     </Link> 
                     <Link >
-                      <Button className="text-white rounded-lg p-2 w-24"
+                      <Button variant="contained" className="text-white rounded-lg p-2 w-24"
                     style={{ backgroundColor: "#4A9CDF" }}>
                         Delete
                       </Button>

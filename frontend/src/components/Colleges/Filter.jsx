@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
+import Modal from "./Modal";
 
 const Options = [
   { text: "B. Arch", course: "Architecture" },
@@ -20,7 +21,15 @@ function Filter() {
   const cityRef = useRef(null);
   const naacRef = useRef(null);
   const accreditationRef = useRef(null);
+  
+  const [showModal, setShowModal] = useState(false);
+  const [selectedType, setSelectedType] = useState("BSc"); // Default to BSc
 
+  const closeModal = () => setShowModal(false);
+  const openModal = (type) => {
+    setShowModal(true);
+    setSelectedType(type);
+  };
   // Close dropdowns if clicked outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -47,10 +56,27 @@ function Filter() {
   return (
     <>
       <div className="ml-80 mt-20 p-4">
-        {Options.map((option, index) => (
+        {/* {Options.map((option, index) => (
           <button
             className="h-12 w-36 ml-4 bg-[#569df4] border border-black-100 rounded-md hover:drop-shadow-lg"
             key={index}
+          >
+            <span className="hover:underline text-white font-medium">
+              {option.text}
+            </span>
+          </button>
+        ))} */}
+        {Options.map((option, index) => (
+          <button
+            className="h-12 w-32 bg-[#569df4] border border-black-100 rounded-md hover:drop-shadow-lg"
+            key={index}
+            onClick={() => {
+              if (option.text === "B. Sc" || option.text === "BE/B. Tech") {
+                openModal(option.text);
+              } else {
+                handleCourseChange(option.course);
+              }
+            }}
           >
             <span className="hover:underline text-white font-medium">
               {option.text}
@@ -169,7 +195,7 @@ function Filter() {
           {naacOpen && (
             <div className="absolute bg-white border rounded-md shadow-lg mt-2 w-full">
               <ul className="max-h-80 overflow-y-auto">
-                {["A++", "A+", "A", "B++", "B+", "B", "C"].map(
+                {["Naac A++", "Naac A+", "Naac A", "Naac B++", "Naac B+", "Naac B", "Naac C"].map(
                   (rating, index) => (
                     <li key={index} className="px-2">
                       <label className="flex items-center">
@@ -213,6 +239,7 @@ function Filter() {
             </div>
           )}
         </div>
+        {showModal && <Modal closeModal={closeModal} type={selectedType} />}
       </div>
     </>
   );
