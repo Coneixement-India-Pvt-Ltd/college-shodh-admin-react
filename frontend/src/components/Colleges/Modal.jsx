@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./BscModal.css";
+import "./Modal.css";
 
 const Modal = ({ closeModal, type }) => {
   // to stop scrolling when modal is open
@@ -122,7 +122,7 @@ const Modal = ({ closeModal, type }) => {
   return (
     <>
       <div className="modal-wrapper" onClick={closeModal}></div>
-      <div className="modal-container">
+      <div className="modal-container relative z-10 mt-36">
         <h1 className="font-mono">{type === "BSc" ? "B. Sc Courses" : "BE/B. Tech Courses"}</h1>
         {currentCourses.map((course, index) => (
           <button className="model-btn" onClick={closeModal} key={index}>
