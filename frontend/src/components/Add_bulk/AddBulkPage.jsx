@@ -5,8 +5,8 @@ import AddBulk from "./AddBulk";
 
 const AddBulkPage = () => {
   return <>
-  <Navbar />
-  <Sidebar />
+  {/* <Navbar />
+  <Sidebar /> */}
   <AddBulk />
   </>;
 };

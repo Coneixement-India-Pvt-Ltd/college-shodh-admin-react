@@ -66,7 +66,7 @@ const Login = () => {
             </div>
 
             <div className="sign-up-container">
-              <form action="" className="sign-up-form" onSubmit={handleSubmit}>
+              <form action="" className="sign-up-form">
                 <h2 className="mb-2 text-xl font-serif font-semibold">Login</h2>
                 <label className="font-serif" htmlFor="email">
                   Email:

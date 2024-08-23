@@ -11,37 +11,37 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   Axios.post("http://localhost:3000/auth/signup", {
-  //     username,
-  //     email,
-  //     password,
-  //   })
-  //     .then((response) => {
-  //       if (response.data.status) {
-  //         alert("Signup successful. Please login to continue.");
-  //         console.log(response);
-  //         navigate("/login");
-  //       } 
-  //       else {
-  //         // setError("Something went wrong. Please try again.");
-  //         console.log(response.data);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response.data);
-  //       setError("An error occurred. Please try again."); 
-  //     });      
-  // };
+  const handleSubmit = (e) => {
+    // e.preventDefault();
+    // Axios.post("http://localhost:3000/auth/signup", {
+    //   username,
+    //   email,
+    //   password,
+    // })
+    //   .then((response) => {
+    //     if (response.data.status) {
+    //       alert("Signup successful. Please login to continue.");
+    //       console.log(response);
+    //       navigate("/login");
+    //     } 
+    //     else {
+    //       // setError("Something went wrong. Please try again.");
+    //       console.log(response.data);
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.response.data);
+    //     setError("An error occurred. Please try again."); 
+    //   });      
+  };
 
   return (
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
         <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
           <img
-            alt=""
-            src="./background.jpg"
+            alt="BackgroundImage"
+            src="./images/background.jpg"
             className="absolute inset-0 h-full w-full object-cover opacity-50"
           />
 

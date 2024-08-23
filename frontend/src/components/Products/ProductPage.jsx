@@ -6,8 +6,8 @@ import Product from './Product'
 const ProductPage = () => {
   return (
     <>
-        <Navbar />
-        <Sidebar />
+        {/* <Navbar />
+        <Sidebar /> */}
         <Product />
     </>
   )

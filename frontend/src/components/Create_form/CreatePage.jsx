@@ -7,8 +7,8 @@ import Add from './Add'
 const InboxPage = () => {
   return (
     <>
-    <Navbar />
-    <Sidebar />
+    {/* <Navbar />
+    <Sidebar /> */}
     {/* <Create /> */}
     <Add />
     </>

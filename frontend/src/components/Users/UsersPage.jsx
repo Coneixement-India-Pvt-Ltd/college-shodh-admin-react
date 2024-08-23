@@ -6,8 +6,8 @@ import Sidebar from '../Admin_panel/Sidebar'
 const UsersPage = () => {
   return (
     <>
-    <Navbar />
-    <Sidebar />
+    {/* <Navbar />
+    <Sidebar /> */}
     <Users />
     </>
   )

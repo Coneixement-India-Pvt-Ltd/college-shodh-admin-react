@@ -11,8 +11,8 @@ const Dashboard = () => {
 
   return (
     <>
-      <Navbar />
-      <Sidebar />
+      {/* <Navbar />
+      <Sidebar /> */}
       <DashboardHome/>
     </>
   );

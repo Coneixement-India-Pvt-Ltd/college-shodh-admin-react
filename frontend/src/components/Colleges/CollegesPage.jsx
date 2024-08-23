@@ -8,8 +8,8 @@ import axios from 'axios';
 const CollegesPage = () => {
   return (
     <div>
-      <Navbar />
-      <Sidebar />
+      {/* <Navbar />
+      <Sidebar /> */}
       <Filter />
       <Card />
       
