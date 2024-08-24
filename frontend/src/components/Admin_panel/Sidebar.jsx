@@ -8,13 +8,13 @@ const Sidebar = () => {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get("http://localhost:3000/auth/verify").then((res) => {
-      if (res.data.status) {
-        // navigate("/dashboard");
-      } else {
-        navigate("/login");
-      }
-    });
+    // axios.get("http://localhost:3000/auth/verify").then((res) => {
+    //   if (res.data.status) {
+    //     // navigate("/dashboard");
+    //   } else {
+    //     navigate("/login");
+    //   }
+    // });
   }, []);
 
   const handleLogout = () => {

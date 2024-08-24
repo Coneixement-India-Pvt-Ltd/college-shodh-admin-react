@@ -12,7 +12,7 @@ const Navbar = () => {
   // Logout function
   const handleLogout = () => {
     axios
-      .get("http://localhost:3000/auth/logout")
+      .post("http://localhost:3000/auth/logout")
       .then((res) => {
         if (res.data.status) {
           navigate("/");
@@ -59,7 +59,7 @@ const Navbar = () => {
                 </svg>
               </button>
               <img
-                src="./images/collegeShodh.png"
+                src="../images/collegeShodh.png"
                 className="h-11 me-3"
                 alt="CollegeShodh Logo"
               />
