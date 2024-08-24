@@ -6,8 +6,32 @@ import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3000/auth/login", {
+        email,
+        password,
+      });
+
+      if (response.data.status) {
+        // Save the JWT token to local storage or cookies
+        localStorage.setItem("token", response.data.token);
+        alert("login Successfully");
+        navigate("/dashboard");
+      } else {
+        setError("Invalid email or password. Please try again.");
+        navigate("/login");
+      }
+    } catch (err) {
+      console.error(err.response?.data || err.message);
+      setError("An error occurred. Please try again.");
+    }
+  };
 
   return (
     <section className="bg-white">
@@ -55,18 +79,10 @@ const Login = () => {
                   style={{ borderRadius: "10%" }}
                 />
               </a>
-              {/* <h1 className="-mb-20 text-2xl font-bold text-black sm:text-3xl md:text-4xl">
-                Welcome to CollegeShodh
-              </h1>{" "}
-            
-              <p className="mt-4 leading-relaxed text-gray-500">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Eligendi nam dolorum aliquam, quibusdam aperiam voluptatum.
-              </p> */}
             </div>
 
             <div className="sign-up-container">
-              <form action="" className="sign-up-form">
+              <form action="" className="sign-up-form" onSubmit={handleSubmit}>
                 <h2 className="mb-2 text-xl font-serif font-semibold">Login</h2>
                 <label className="font-serif" htmlFor="email">
                   Email:

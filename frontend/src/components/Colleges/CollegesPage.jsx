@@ -6,6 +6,7 @@ import Filter from './Filter';
 import axios from 'axios';
 
 const CollegesPage = () => {
+  
   return (
     <div>
       {/* <Navbar />

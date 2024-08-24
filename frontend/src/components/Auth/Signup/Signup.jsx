@@ -12,27 +12,29 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
-    // Axios.post("http://localhost:3000/auth/signup", {
-    //   username,
-    //   email,
-    //   password,
-    // })
-    //   .then((response) => {
-    //     if (response.data.status) {
-    //       alert("Signup successful. Please login to continue.");
-    //       console.log(response);
-    //       navigate("/login");
-    //     } 
-    //     else {
-    //       // setError("Something went wrong. Please try again.");
-    //       console.log(response.data);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.response.data);
-    //     setError("An error occurred. Please try again."); 
-    //   });      
+    e.preventDefault();
+    Axios.post("http://localhost:3000/auth/signup", {
+      username,
+      email,
+      password,
+    })
+      .then((response) => {
+        if (response.data.status) {
+          alert("Signup successful. Please login to continue.");
+          console.log(response);
+          navigate("/login");
+        } 
+        else {
+          // setError("Something went wrong. Please try again.");
+          console.log(response.data);
+          alert(response.data.message);
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        setError("An error occurred. Please try again."); 
+        alert(error.response.data.message);
+      });      
   };
 
   return (
