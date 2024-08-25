@@ -17,18 +17,18 @@ const Sidebar = () => {
     // });
   }, []);
 
-  const handleLogout = () => {
-    axios
-      .get("http://localhost:3000/auth/logout")
-      .then((res) => {
-        if (res.data.status) {
-          navigate("/");
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
+  // const handleLogout = () => {
+  //   axios
+  //     .get("http://localhost:3000/auth/logout")
+  //     .then((res) => {
+  //       if (res.data.status) {
+  //         navigate("/");
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // };
 
   return (
     <div>
