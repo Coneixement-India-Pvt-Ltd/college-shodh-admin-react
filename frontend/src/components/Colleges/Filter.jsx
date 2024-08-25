@@ -56,16 +56,6 @@ function Filter() {
   return (
     <>
       <div className="ml-80 mt-20 p-4">
-        {/* {Options.map((option, index) => (
-          <button
-            className="h-12 w-36 ml-4 bg-[#569df4] border border-black-100 rounded-md hover:drop-shadow-lg"
-            key={index}
-          >
-            <span className="hover:underline text-white font-medium">
-              {option.text}
-            </span>
-          </button>
-        ))} */}
         {Options.map((option, index) => (
           <button
             className="h-12 w-32 bg-[#569df4] border border-black-100 rounded-md hover:drop-shadow-lg"
