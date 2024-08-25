@@ -48,6 +48,8 @@ import CreatePage from './components/Create_form/CreatePage';
 import AddBulkPage from './components/Add_bulk/AddBulkPage';
 import Navbar from './components/Admin_panel/Navbar';
 import Sidebar from './components/Admin_panel/Sidebar';
+import Error from './components/Error';
+
 
 function DashboardLayout({ children }) {
   return (
@@ -72,6 +74,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/resetPassword/:token" element={<ResetPassword />} />
+        <Route path="*" element={<Error />} />
 
         {/* Dashboard routes */}
         <Route 
