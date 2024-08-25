@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 const Navbar = () => {
@@ -16,6 +17,7 @@ const Navbar = () => {
       .then((res) => {
         if (res.data.status) {
           navigate("/");
+          toast.error('Logged out successfully')
           console.log("Logged out successfully");
         }
       })

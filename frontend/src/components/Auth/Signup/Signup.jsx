@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../Signup/Signup.css";
 import Axios from "axios";
+import {toast} from 'react-toastify'
 import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -20,8 +21,9 @@ const Signup = () => {
     })
       .then((response) => {
         if (response.data.status) {
-          alert("Signup successful. Please login to continue.");
-          console.log(response);
+          //alert("Signup successful. Please login to continue.");
+          toast.success("Signup Successfully");
+          //console.log(response);
           navigate("/login");
         } 
         else {
