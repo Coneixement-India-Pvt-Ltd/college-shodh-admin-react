@@ -1,21 +1,20 @@
 import React from "react";
-import {
-  Stepper,
-  Step,
-  StepLabel,
-  Button,
-  Box,
-  Typography,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import Preview from "./Preview";
 
-const steps = ["Add College Form", "Preview"];
+
+const steps = ["Add College Form", "Preview", "Submit"];
 
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const [formData, setFormData] = React.useState({
-    college_name: "",
+    collegeName: "",
     university: "",
     program: "",
     naac: "",
@@ -33,23 +32,7 @@ export default function HorizontalLinearStepper() {
   });
 
   const handleNext = () => {
-    if (activeStep == steps.length - 1) {
-      handleFinish();
-    } else {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    }
-  };
-
-  const handleFinish = () => {
-    console.log("Form Data:", formData);
-    // if more steps?
-    if (activeStep < steps.length - 1) {
-      // Move to next step
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    } else {
-      // stepper reaches the end
-      setActiveStep(steps.length);
-    }
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
@@ -59,7 +42,7 @@ export default function HorizontalLinearStepper() {
   const handleReset = () => {
     setActiveStep(0);
     setFormData({
-      college_name: "",
+      collegeName: "",
       university: "",
       program: "",
       courses: "",
@@ -100,17 +83,11 @@ export default function HorizontalLinearStepper() {
           </Stepper>
           {activeStep === steps.length ? (
             <React.Fragment>
-              <div className="p-20">
-                <div className="text-center p-16 border rounded">
-                  <img
-                    src="/images/tick.png"
-                    alt="tick"
-                    className="h-12 mx-auto mb-3"
-                  />
-                  <strong>All steps completed - you're done</strong>
+              <div className="p-36">
+                <div className="text-center p-16 border rounded bg-green-400">
+                  <strong>All steps completed - you&apos;re finished</strong>
                 </div>
               </div>
-
               <Box sx={{ textAlign: "right" }}>
                 <Button
                   onClick={handleReset}
@@ -137,8 +114,8 @@ export default function HorizontalLinearStepper() {
                         <label className="block mb-2">College Name:</label>
                         <input
                           type="text"
-                          name="college_name"
-                          value={formData.college_name}
+                          name="collegeName"
+                          value={formData.collegeName}
                           onChange={handleChange}
                           className="border w-full"
                           required
@@ -368,7 +345,7 @@ export default function HorizontalLinearStepper() {
                         </div>
                       )}
 
-                      {formData.course === "B. Sc" && (
+                      {formData.program === "B. Sc" && (
                         <div>
                           <label className="block mb-2">Courses:</label>
                           <div className="flex flex-wrap gap-2">
@@ -1021,13 +998,13 @@ export default function HorizontalLinearStepper() {
               {/* PREVIEW PAGE */}
               {activeStep === 1 && <Preview formData={formData} />}
 
-              {/* {activeStep === 2 && (
+              {activeStep === 2 && (
                 <div className="p-36">
                   <div className="text-center p-16 border-4 rounded">
                     <strong>Submit your information.</strong>
                   </div>
                 </div>
-              )} */}
+              )}
 
               <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
                 <Button
