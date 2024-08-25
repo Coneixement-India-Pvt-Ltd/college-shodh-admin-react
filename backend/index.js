@@ -208,7 +208,7 @@ app.post("/auth/logout", (req, res, next) => {
 // Example of a protected route
 app.get("/dashboard",isAuthorized,(req, res) => {
   res.json({ isAuthenticated: true });
-  console.log("Welcome to the dashboard")
+  //console.log("Welcome to the dashboard")
 });
 
 // API route to get courses (public route)
