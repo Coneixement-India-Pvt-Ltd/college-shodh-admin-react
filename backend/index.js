@@ -97,8 +97,8 @@ passport.use(
         //  }
 
         // Compare password with hashed password in the database
-        console.log("Original Password:", password);
-        console.log("Hashed Password:", user.password);
+        // console.log("Original Password:", password);
+        // console.log("Hashed Password:", user.password);
 
         const isMatch = await bcrypt.compare(password, user.password);
         console.log(isMatch);
