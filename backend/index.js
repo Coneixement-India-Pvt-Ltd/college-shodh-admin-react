@@ -71,147 +71,6 @@ mongoose
     console.error("MongoDB connection error:", err);
   });
 
-// Configure Passport.js with the Local Strategy for authentication
-passport.use(
-  new LocalStrategy(
-    {
-      usernameField: "email", // Use "email" instead of "username" for the username field
-      passwordField: "password", // Use "password" for the password field
-    },
-    async (email, password, done) => {
-      try {
-        // Find user by email
-        const user = await User.findOne({ email });
-        //console.log(user);
-        if (!user) {
-          return done(null, false, { message: "Incorrect username." });
-        }
-
-        //console.log(user.password);
-
-        // Use the comparePassword method from the schema
-        //  const isMatch = await user.comparePassword(user.password);
-        //  console.log(isMatch);
-        //  if (!isMatch) {
-        //    return done(null, false, { message: "Incorrect ashajs password." });
-        //  }
-
-        // Compare password with hashed password in the database
-        console.log("Original Password:", password);
-        console.log("Hashed Password:", user.password);
-
-        const isMatch = await bcrypt.compare(password, user.password);
-        console.log(isMatch);
-        if (!isMatch) {
-          return done(null, false, { message: "Incorrect password." });
-        }
-
-        // Authentication successful
-        return done(null, user);
-      } catch (err) {
-        return done(err);
-      }
-    }
-  )
-);
-
-// Serialize user to store in session
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-// Deserialize user from session
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await User.findById(id);
-    done(null, user);
-  } catch (err) {
-    done(err);
-  }
-});
-
-// User registration route
-app.post("/auth/signup", async (req, res) => {
-  const { username, email, password } = req.body;
-
-  try {
-    // Check if the user already exists
-    const existingUser = await User.findOne({ $or: [{ email }, { username }] });
-    if (existingUser) {
-      return res
-        .status(400)
-        .json({ message: "Username or Email already taken" });
-    }
-
-    // Hash the password before saving it
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create a new user
-    const newUser = new User({ username, email, password: hashedPassword });
-    await newUser.save();
-
-    res
-      .status(201)
-      .json({ status: true, message: "User registered successfully" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ status: false, message: "Server error" });
-  }
-});
-
-// User login route using Passport.js authentication
-app.post("/auth/login", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return res
-        .status(400)
-        .json({ status: false, message: info.message || "Login failed" });
-    }
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-      return res
-        .status(200)
-        .json({ status: true, message: "Logged in successfully" });
-    });
-  })(req, res, next);
-});
-
-// app.post(
-//   "/auth/login",
-//   passport.authenticate("local", {
-//     failureRedirect: "/login",
-//     successRedirect: "/dashboard",
-//   })
-// );
-
-// User logout route
-// app.post("/auth/logout",(req, res) => {
-//   req.logout();
-//   res.status(200).json({ status: true, message: "Logged out successfully" });
-// });
-
-app.post("/auth/logout", (req, res, next) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.status(200).json({ status: true, message: "Logged out successfully" });
-  });
-});
-
-
-// Example of a protected route
-app.get("/dashboard",isAuthorized,(req, res) => {
-  res.json({ isAuthenticated: true });
-  //console.log("Welcome to the dashboard")
-});
-
-// API route to get courses (public route)
 app.get("/api/courses", async (req, res) => {
   try {
     const listings = await College.find();
@@ -221,8 +80,12 @@ app.get("/api/courses", async (req, res) => {
   }
 });
 
-// Root route for testing
-app.get("/", (req, res) => {
+
+
+
+
+
+app.get("/", function (req, res) {
   res.send("Hello World");
 });
 
