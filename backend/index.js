@@ -221,8 +221,12 @@ app.get("/api/courses", async (req, res) => {
   }
 });
 
-// Root route for testing
-app.get("/", (req, res) => {
+
+
+
+
+
+app.get("/", function (req, res) {
   res.send("Hello World");
 });
 
