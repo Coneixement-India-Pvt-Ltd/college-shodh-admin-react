@@ -86,7 +86,7 @@ const Create = () => {
       </div>
       <div className="p-4 flex justify-center">
         <button
-          className="text-white p-2 rounded-md h-16 w-48 bg-orange-500 font-bold hover:bg-orange-600"
+          className="text-white p-2 rounded-md ml-24 h-16 w-48 bg-orange-500 font-bold hover:bg-orange-600"
           onClick={uploadBtn}
         >
           Upload

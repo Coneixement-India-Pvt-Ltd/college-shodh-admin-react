@@ -69,7 +69,7 @@ export default function HorizontalLinearStepper() {
   };
 
   return (
-    <div className="mt-24 ml-80 mr-16">
+    <div className="mt-16 ml-80 mr-16">
       <div>
         <Box sx={{ width: "100%" }} className="p-4">
           <Stepper activeStep={activeStep}>
@@ -83,8 +83,9 @@ export default function HorizontalLinearStepper() {
           </Stepper>
           {activeStep === steps.length ? (
             <React.Fragment>
-              <div className="p-36">
-                <div className="text-center p-16 border rounded bg-green-400">
+              <div className="p-28">
+                <div className="text-center w-full p-16 border-2 rounded">
+                  <img src="/images/tick.png" alt="tick" className="h-10 ml-60 mb-3"/>
                   <strong>All steps completed - you&apos;re finished</strong>
                 </div>
               </div>
@@ -935,8 +936,8 @@ export default function HorizontalLinearStepper() {
                         <label className="block mb-2">Intake:</label>
                         <input
                           type="text"
-                          name="Intake"
-                          value={formData.Intake}
+                          name="intake"
+                          value={formData.intake}
                           onChange={handleChange}
                           className="border w-full"
                           required
@@ -999,7 +1000,7 @@ export default function HorizontalLinearStepper() {
               {activeStep === 1 && <Preview formData={formData} />}
 
               {activeStep === 2 && (
-                <div className="p-36">
+                <div className="p-28">
                   <div className="text-center p-16 border-4 rounded">
                     <strong>Submit your information.</strong>
                   </div>
