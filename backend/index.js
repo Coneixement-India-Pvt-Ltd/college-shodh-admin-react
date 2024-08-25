@@ -27,6 +27,7 @@ mongoose
     console.error("MongoDB connection error:", err);
   });
 
+// render data
 app.get("/api/courses", async (req, res) => {
   try {
     const listings = await College.find();
@@ -37,8 +38,27 @@ app.get("/api/courses", async (req, res) => {
   }
 });
 
-
-
+// create route
+app.post("/api/courses", async (req, res) => {
+  const listing = new College({
+    college_name: req.body.college_name,
+    address: req.body.address,
+    course: req.body.course,
+    dept: req.body.dept,
+    university: req.body.university,
+    nirf: req.body.nirf,
+    naac: req.body.naac,
+    nba: req.body.nba,
+    fees: req.body.fees,
+    admission_criteria: req.body.admission_criteria,
+    intake: req.body.intake,
+    contact: req.body.contact,
+    faculty: req.body.faculty,
+    email: req.body.email,
+    website: req.body.website,
+  });
+  console.log(listing); 
+});
 
 
 
