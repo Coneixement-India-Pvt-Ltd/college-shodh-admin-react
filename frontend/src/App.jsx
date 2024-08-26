@@ -35,31 +35,28 @@
 
 // export default App;
 
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Signup from './components/Auth/Signup/Signup';
-import Login from './components/Auth/Login/Login';
-import Home from './components/Home';
-import ForgotPassword from './components/Auth/ForgotPassword/ForgotPassword';
-import ResetPassword from './components/Auth/ForgotPassword/ResetPassword';
-import AdminPage from './components/Admin_panel/AdminPage';
-import CollegesPage from './components/Colleges/CollegesPage';
-import CreatePage from './components/Create_form/CreatePage';
-import AddBulkPage from './components/Add_bulk/AddBulkPage';
-import Navbar from './components/Admin_panel/Navbar';
-import Sidebar from './components/Admin_panel/Sidebar';
-import Error from './components/Error';
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Signup from "./components/Auth/Signup/Signup";
+import Login from "./components/Auth/Login/Login";
+import Home from "./components/Home";
+import ForgotPassword from "./components/Auth/ForgotPassword/ForgotPassword";
+import ResetPassword from "./components/Auth/ForgotPassword/ResetPassword";
+import AdminPage from "./components/Admin_panel/AdminPage";
+import CollegesPage from "./components/Colleges/CollegesPage";
+import CreatePage from "./components/Create_form/CreatePage";
+import AddBulkPage from "./components/Add_bulk/AddBulkPage";
+import Navbar from "./components/Admin_panel/Navbar";
+import Sidebar from "./components/Admin_panel/Sidebar";
+import Error from "./components/Error";
+import Edit from "./components/Edit_form/Edit";
 
 function DashboardLayout({ children }) {
   return (
     <>
       <Navbar />
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: "flex" }}>
         <Sidebar />
-        <div style={{ width: '100%' }}>
-          {children}
-        </div>
+        <div style={{ width: "100%" }}>{children}</div>
       </div>
     </>
   );
@@ -77,39 +74,46 @@ function App() {
         <Route path="*" element={<Error />} />
 
         {/* Dashboard routes */}
-        <Route 
-          path="/dashboard" 
+        <Route
+          path="/dashboard"
           element={
             <DashboardLayout>
               <AdminPage />
             </DashboardLayout>
-          } 
+          }
         />
-        <Route 
-          path="/dashboard/college" 
+        <Route
+          path="/dashboard/college"
           element={
             <DashboardLayout>
               <CollegesPage />
             </DashboardLayout>
-          } 
+          }
         />
-        <Route 
-          path="/dashboard/create" 
+        <Route
+          path="/dashboard/create"
           element={
             <DashboardLayout>
               <CreatePage />
             </DashboardLayout>
-          } 
+          }
         />
-        <Route 
-          path="/dashboard/create-bulk" 
+        <Route
+          path="/dashboard/create-bulk"
           element={
             <DashboardLayout>
               <AddBulkPage />
             </DashboardLayout>
-          } 
+          }
         />
-        {/* Add more dashboard routes here */}
+        <Route
+          path="/dashboard/edit/:id"
+          element={
+            <DashboardLayout>
+              <Edit />
+            </DashboardLayout>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
