@@ -26,10 +26,31 @@ function Filter() {
   const [selectedType, setSelectedType] = useState("BSc"); // Default to BSc
 
   const closeModal = () => setShowModal(false);
+
+  // const openModal = (type) => {
+  //   setShowModal(true);
+  //   setSelectedType(type);
+  // };
+
   const openModal = (type) => {
+    let modalType;
+    switch(type) {
+      case "B. Sc":
+        modalType = "BSc";
+        break;
+      case "BE/B. Tech":
+        modalType = "BE";
+        break;
+      default:
+        modalType = type; // Default to BSc
+    }
     setShowModal(true);
-    setSelectedType(type);
+    setSelectedType(modalType);
   };
+  
+
+
+
   // Close dropdowns if clicked outside
   useEffect(() => {
     const handleClickOutside = (event) => {
