@@ -7,7 +7,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Preview from "./Preview";
 
-
 const steps = ["Add College Form", "Preview", "Submit"];
 
 export default function HorizontalLinearStepper() {
@@ -22,7 +21,7 @@ export default function HorizontalLinearStepper() {
     state: "",
     address: "",
     courseFees: "",
-    Intake: "",
+    intake: "",
     faculty: "",
     website: "",
     contact: "",
@@ -31,10 +30,51 @@ export default function HorizontalLinearStepper() {
     courses: "",
   });
 
+  // form validation and error handling
+  const [errors, setErrors] = React.useState({});
+
+  const validateForm = () => {
+    const fields = [
+      { name: "collegeName", label: "College Name is required" },
+      { name: "university", label: "University is required" },
+      { name: "program", label: "Program is required" },
+      { name: "naac", label: "NAAC is required" },
+      { name: "nirf", label: "NIRF is required" },
+      { name: "state", label: "State is required" },
+      { name: "address", label: "Address is required" },
+      { name: "courseFees", label: "Course Fees are required" },
+      { name: "intake", label: "Intake is required" },
+      { name: "faculty", label: "Faculty is required" },
+      { name: "website", label: "Website is required" },
+      { name: "contact", label: "Contact is required" },
+      { name: "email", label: "Email is required" },
+      { name: "nbaApproved", label: "NBA Approval status is required" },
+      // { name: "courses", label: "Courses are required" },
+    ];
+
+    const newErrors = {};
+    console.log(newErrors);
+
+    fields.map((field) => {
+      if (!formData[field.name]) {
+        newErrors[field.name] = field.label;
+      }
+      return null;
+    });
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // next btn click handler
   const handleNext = () => {
+    if (activeStep === 0 && !validateForm()) {
+      return; // Don't proceed if validation fails
+    }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
+  // back btn click handler
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -60,8 +100,23 @@ export default function HorizontalLinearStepper() {
     });
   };
 
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prevFormData) => ({
+  //     ...prevFormData,
+  //     [name]: value,
+  //   }));
+  // };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Clear the specific error for the field being changed
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }));
+
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -85,7 +140,11 @@ export default function HorizontalLinearStepper() {
             <React.Fragment>
               <div className="p-28">
                 <div className="text-center w-full p-16 border-2 rounded">
-                  <img src="/images/tick.png" alt="tick" className="h-10 ml-60 mb-3"/>
+                  <img
+                    src="/images/tick.png"
+                    alt="tick"
+                    className="h-10 ml-60 mb-3"
+                  />
                   <strong>All steps completed - you&apos;re finished</strong>
                 </div>
               </div>
@@ -121,6 +180,11 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.collegeName}
+                          </Typography>
+                        )}
                       </div>
 
                       <div>
@@ -133,6 +197,11 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.university}
+                          </Typography>
+                        )}
                       </div>
 
                       <div>
@@ -151,6 +220,11 @@ export default function HorizontalLinearStepper() {
                           <option value="BE/B. Tech">BE/B. Tech</option>
                           <option value="B. Sc">B. Sc</option>
                         </select>
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.program}
+                          </Typography>
+                        )}
                       </div>
 
                       {formData.program === "BE/B. Tech" && (
@@ -813,6 +887,11 @@ export default function HorizontalLinearStepper() {
                           <option value="C">C</option>
                           <option value="NotNaac">Not Accredited</option>
                         </select>
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.naac}
+                          </Typography>
+                        )}
                       </div>
 
                       <div>
@@ -829,6 +908,11 @@ export default function HorizontalLinearStepper() {
                           <option value="No">No</option>
                           <option value="N/A">N/A</option>
                         </select>
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.nba}
+                          </Typography>
+                        )}
                       </div>
 
                       <div>
@@ -841,6 +925,11 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.nirf}
+                          </Typography>
+                        )}
                       </div>
 
                       <div>
@@ -853,6 +942,11 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.address}
+                          </Typography>
+                        )}
                       </div>
 
                       <div>
@@ -912,6 +1006,11 @@ export default function HorizontalLinearStepper() {
                           <option value="Lakshadweep">Lakshadweep</option>
                           <option value="Puducherry">Puducherry</option>
                         </select>
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.state}
+                          </Typography>
+                        )}
                       </div>
 
                       <div>
@@ -930,6 +1029,11 @@ export default function HorizontalLinearStepper() {
                           <option value="1.5L-2L">1.5L-2L</option>
                           <option value="2L+">Above 2L</option>
                         </select>
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.courseFees}
+                          </Typography>
+                        )}
                       </div>
 
                       <div>
@@ -942,6 +1046,11 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.intake}
+                          </Typography>
+                        )}
                       </div>
 
                       <div>
@@ -954,6 +1063,11 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.faculty}
+                          </Typography>
+                        )}
                       </div>
 
                       <div>
@@ -966,6 +1080,11 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.website}
+                          </Typography>
+                        )}
                       </div>
 
                       <div>
@@ -978,6 +1097,11 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.contact}
+                          </Typography>
+                        )}
                       </div>
 
                       <div>
@@ -990,6 +1114,11 @@ export default function HorizontalLinearStepper() {
                           className="border p-2 mb-4 w-full"
                           required
                         />
+                        {errors.collegeName && (
+                          <Typography color="error" variant="body2">
+                            {errors.email}
+                          </Typography>
+                        )}
                       </div>
                     </div>
                   </Box>
