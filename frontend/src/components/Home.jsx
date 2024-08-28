@@ -78,7 +78,7 @@ const Home = () => {
         </a>
 
         <a
-          className="block w-full rounded px-12 py-3 text-sm font-medium text-red-600 shadow hover:text-red-700 focus:outline-none focus:ring active:text-red-500 sm:w-auto"
+          className="block w-full rounded px-12 py-3 text-sm font-medium text-red-600 shadow hover:text-red-950 focus:outline-none focus:ring active:text-red-500 sm:w-auto"
           href="/login"
         >
           Login

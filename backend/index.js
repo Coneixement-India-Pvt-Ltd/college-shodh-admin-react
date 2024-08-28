@@ -1,4 +1,3 @@
-
 // Import necessary modules
 import express from "express";
 import dotenv from "dotenv";
@@ -10,6 +9,11 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcryptjs";
 import MongoStore from "connect-mongo"; // For storing sessions in MongoDB
+import multer from "multer";
+import XLSX from "xlsx";
+import { MongoClient } from "mongodb";
+
+import path from "path";
 
 import User from "./models/User.js"; // Your User model
 import College from "./models/courseSchema.js"; // Your College model
@@ -34,6 +38,8 @@ app.use(
 
 // Middleware to parse cookies
 app.use(cookieParser());
+app.use(express.static(path.join(path.resolve(), "public")));
+const upload = multer({ dest: "uploads/" });
 
 // Middleware to parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
@@ -89,17 +95,7 @@ passport.use(
 
         //console.log(user.password);
 
-        // Use the comparePassword method from the schema
-        //  const isMatch = await user.comparePassword(user.password);
-        //  console.log(isMatch);
-        //  if (!isMatch) {
-        //    return done(null, false, { message: "Incorrect ashajs password." });
-        //  }
-
-        // Compare password with hashed password in the database
-        // console.log("Original Password:", password);
-        // console.log("Hashed Password:", user.password);
-
+        // Check if the password is correct
         const isMatch = await bcrypt.compare(password, user.password);
         console.log(isMatch);
         if (!isMatch) {
@@ -181,20 +177,7 @@ app.post("/auth/login", (req, res, next) => {
   })(req, res, next);
 });
 
-// app.post(
-//   "/auth/login",
-//   passport.authenticate("local", {
-//     failureRedirect: "/login",
-//     successRedirect: "/dashboard",
-//   })
-// );
-
 // User logout route
-// app.post("/auth/logout",(req, res) => {
-//   req.logout();
-//   res.status(200).json({ status: true, message: "Logged out successfully" });
-// });
-
 app.post("/auth/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) {
@@ -204,9 +187,8 @@ app.post("/auth/logout", (req, res, next) => {
   });
 });
 
-
 // Example of a protected route
-app.get("/dashboard",isAuthorized,(req, res) => {
+app.get("/dashboard", isAuthorized, (req, res) => {
   res.json({ isAuthenticated: true });
   //console.log("Welcome to the dashboard")
 });
@@ -221,10 +203,41 @@ app.get("/api/courses", async (req, res) => {
   }
 });
 
+// MongoDB client initialization
+const client = new MongoClient(process.env.ATLASDB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
+app.post("/dashboard/create-bulk", upload.single("file"), async (req, res) => {
+  const filePath = req.file.path;
 
+  // Read the Excel file
+  const workbook = XLSX.readFile(filePath);
+  const sheetName = workbook.SheetNames[0];
+  const sheet = workbook.Sheets[sheetName];
+  const data = XLSX.utils.sheet_to_json(sheet);
 
+  console.log("Parsed Excel data:", data);
 
+  try {
+    await client.connect();
+    console.log("Connected successfully to MongoDB");
+    const database = client.db("collegeShodh"); // Replace with your database name
+    const collection = database.collection("colleges"); // Replace with your collection name
+
+    // Insert data into MongoDB
+    await collection.insertMany(data);
+    console.log(`Inserted ${result.insertedCount} documents`);
+
+    res.send("Data imported successfully!");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error importing data");
+  } finally {
+    await client.close();
+  }
+});
 
 app.get("/", function (req, res) {
   res.send("Hello World");
