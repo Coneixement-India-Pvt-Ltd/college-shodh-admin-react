@@ -10,25 +10,25 @@ const Preview = ({ formData }) => {
       </div>
 
       <div className="border-2 border-gray-400 p-8 bg-slate-200 rounded">
-        <strong>College Name:</strong> {formData.collegeName}
-        <br />
-        <strong>University:</strong> {formData.university}
-        <br />
-        <strong>Program:</strong> {formData.program}
-        <br />
-        <strong>Courses:</strong> {formData.courses}
-        <br />
-        <strong>NAAC:</strong> {formData.naac}
-        <br />
-        <strong>NBA Approved:</strong> {formData.nbaApproved}
-        <br />
-        <strong>NIRF:</strong> {formData.nirf}
+        <strong>College Name:</strong> {formData.college_name}
         <br />
         <strong>Address:</strong> {formData.address}
         <br />
-        <strong>State:</strong> {formData.state}
+        <strong>Program:</strong> {formData.course}
         <br />
-        <strong>FEES:</strong> {formData.courseFees}
+        <strong>Courses:</strong> {formData.dept}
+        <br />
+        <strong>University:</strong> {formData.university}
+        <br />
+        <strong>NAAC:</strong> {formData.naac}
+        <br />
+        <strong>NBA Approved:</strong> {formData.nba}
+        <br />
+        <strong>NIRF:</strong> {formData.nirf}
+        <br />
+        <strong>Admission Criteria:</strong> {formData.admission_criteria}
+        <br />
+        <strong>FEES:</strong> {formData.fees}
         <br />
         <strong>Intake:</strong> {formData.intake}
         <br />
