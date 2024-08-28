@@ -6,6 +6,8 @@ import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Preview from "./Preview";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const steps = ["Add College Form", "Preview", "Submit"];
 
@@ -13,21 +15,21 @@ export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const [formData, setFormData] = React.useState({
-    collegeName: "",
-    university: "",
-    program: "",
-    naac: "",
-    nirf: "",
-    state: "",
+    college_name: "",
     address: "",
-    courseFees: "",
+    course: "",
+    dept: "",
+    university: "",
+    nirf: "",
+    naac: "",
+    nba: "",
+    fees: "",
+    admission_criteria: "",
     intake: "",
-    faculty: "",
-    website: "",
     contact: "",
+    faculty: "",
     email: "",
-    nbaApproved: "",
-    courses: "",
+    website: "",
   });
 
   // form validation and error handling
@@ -35,21 +37,21 @@ export default function HorizontalLinearStepper() {
 
   const validateForm = () => {
     const fields = [
-      { name: "collegeName", label: "College Name is required" },
+      { name: "college_name", label: "College Name is required" },
       { name: "university", label: "University is required" },
-      { name: "program", label: "Program is required" },
+      { name: "course", label: "Program is required" },
       { name: "naac", label: "NAAC is required" },
       { name: "nirf", label: "NIRF is required" },
-      { name: "state", label: "State is required" },
+      { name: "admission_criteria", label: "Admission criteria is required" },
       { name: "address", label: "Address is required" },
-      { name: "courseFees", label: "Course Fees are required" },
+      { name: "fees", label: "Course Fees are required" },
       { name: "intake", label: "Intake is required" },
       { name: "faculty", label: "Faculty is required" },
       { name: "website", label: "Website is required" },
       { name: "contact", label: "Contact is required" },
       { name: "email", label: "Email is required" },
-      { name: "nbaApproved", label: "NBA Approval status is required" },
-      // { name: "courses", label: "Courses are required" },
+      { name: "nba", label: "NBA Approval status is required" },
+      // { name: "dept", label: "Courses are required" },
     ];
 
     const newErrors = {};
@@ -82,12 +84,12 @@ export default function HorizontalLinearStepper() {
   const handleReset = () => {
     setActiveStep(0);
     setFormData({
-      collegeName: "",
+      college_name: "",
       university: "",
-      program: "",
+      course: "",
       courses: "",
       naac: "",
-      nbaApproved: "",
+      nba: "",
       nirf: "",
       address: "",
       state: "",
@@ -121,6 +123,42 @@ export default function HorizontalLinearStepper() {
       ...prevFormData,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = async (e) => {
+    console.log(formData);
+    console.log(e);
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/dashboard/create",
+        formData
+      );
+      if (response.status === 201) {
+        toast.success("Listing created successfully");
+        // navigate("/dashboard");
+        setFormData({
+          college_name: "",
+          university: "",
+          course: "",
+          dept: "",
+          naac: "",
+          nba: "",
+          nirf: "",
+          address: "",
+          admission_criteria: "",
+          fees: "",
+          intake: "",
+          faculty: "",
+          website: "",
+          contact: "",
+          email: "",
+        });
+      }
+    } catch (error) {
+      console.error("Error creating listing", error);
+      toast.error("Failed to create listing");
+    }
   };
 
   return (
@@ -174,15 +212,15 @@ export default function HorizontalLinearStepper() {
                         <label className="block mb-2">College Name:</label>
                         <input
                           type="text"
-                          name="collegeName"
-                          value={formData.collegeName}
+                          name="college_name"
+                          value={formData.college_name}
                           onChange={handleChange}
                           className="border w-full"
                           required
                         />
-                        {errors.collegeName && (
+                        {errors.college_name && (
                           <Typography color="error" variant="body2">
-                            {errors.collegeName}
+                            {errors.college_name}
                           </Typography>
                         )}
                       </div>
@@ -197,7 +235,7 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
-                        {errors.collegeName && (
+                        {errors.university && (
                           <Typography color="error" variant="body2">
                             {errors.university}
                           </Typography>
@@ -207,8 +245,8 @@ export default function HorizontalLinearStepper() {
                       <div>
                         <label className="block mb-2">Program:</label>
                         <select
-                          name="program"
-                          value={formData.program}
+                          name="course"
+                          value={formData.course}
                           onChange={handleChange}
                           className="border w-full"
                           required
@@ -220,14 +258,14 @@ export default function HorizontalLinearStepper() {
                           <option value="BE/B. Tech">BE/B. Tech</option>
                           <option value="B. Sc">B. Sc</option>
                         </select>
-                        {errors.collegeName && (
+                        {errors.course && (
                           <Typography color="error" variant="body2">
-                            {errors.program}
+                            {errors.course}
                           </Typography>
                         )}
                       </div>
 
-                      {formData.program === "BE/B. Tech" && (
+                      {formData.course === "BE/B. Tech" && (
                         <div>
                           <label className="block mb-2">Courses:</label>
                           <div className="flex flex-wrap gap-2">
@@ -237,7 +275,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Computer Science Engineering"
                                 checked={
-                                  formData.courses ===
+                                  formData.dept ===
                                   "Computer Science Engineering"
                                 }
                                 onChange={handleChange}
@@ -250,7 +288,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Mechanical Engineering"
                                 checked={
-                                  formData.courses === "Mechanical Engineering"
+                                  formData.dept === "Mechanical Engineering"
                                 }
                                 onChange={handleChange}
                               />
@@ -262,7 +300,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Electrical Engineering"
                                 checked={
-                                  formData.courses === "Electrical Engineering"
+                                  formData.dept === "Electrical Engineering"
                                 }
                                 onChange={handleChange}
                               />
@@ -273,9 +311,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Civil Engineering"
-                                checked={
-                                  formData.courses === "Civil Engineering"
-                                }
+                                checked={formData.dept === "Civil Engineering"}
                                 onChange={handleChange}
                               />
                               Civil Engineering
@@ -286,8 +322,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Aeronautical Engineering"
                                 checked={
-                                  formData.courses ===
-                                  "Aeronautical Engineering"
+                                  formData.dept === "Aeronautical Engineering"
                                 }
                                 onChange={handleChange}
                               />
@@ -299,7 +334,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Chemical Engineering"
                                 checked={
-                                  formData.courses === "Chemical Engineering"
+                                  formData.dept === "Chemical Engineering"
                                 }
                                 onChange={handleChange}
                               />
@@ -311,7 +346,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Automobile Engineering"
                                 checked={
-                                  formData.courses === "Automobile Engineering"
+                                  formData.dept === "Automobile Engineering"
                                 }
                                 onChange={handleChange}
                               />
@@ -323,7 +358,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Biomedical Engineering"
                                 checked={
-                                  formData.courses === "Biomedical Engineering"
+                                  formData.dept === "Biomedical Engineering"
                                 }
                                 onChange={handleChange}
                               />
@@ -335,7 +370,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Aerospace Engineering"
                                 checked={
-                                  formData.courses === "Aerospace Engineering"
+                                  formData.dept === "Aerospace Engineering"
                                 }
                                 onChange={handleChange}
                               />
@@ -346,9 +381,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Marine Engineering"
-                                checked={
-                                  formData.courses === "Marine Engineering"
-                                }
+                                checked={formData.dept === "Marine Engineering"}
                                 onChange={handleChange}
                               />
                               Marine Engineering
@@ -359,7 +392,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Petroleum Engineering"
                                 checked={
-                                  formData.courses === "Petroleum Engineering"
+                                  formData.dept === "Petroleum Engineering"
                                 }
                                 onChange={handleChange}
                               />
@@ -370,9 +403,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Food Engineering"
-                                checked={
-                                  formData.courses === "Food Engineering"
-                                }
+                                checked={formData.dept === "Food Engineering"}
                                 onChange={handleChange}
                               />
                               Food Engineering
@@ -383,8 +414,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Agricultural Engineering"
                                 checked={
-                                  formData.courses ===
-                                  "Agricultural Engineering"
+                                  formData.dept === "Agricultural Engineering"
                                 }
                                 onChange={handleChange}
                               />
@@ -396,7 +426,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Information Technology Engineering"
                                 checked={
-                                  formData.courses ===
+                                  formData.dept ===
                                   "Information Technology Engineering"
                                 }
                                 onChange={handleChange}
@@ -409,8 +439,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Biotechnology Engineering"
                                 checked={
-                                  formData.courses ===
-                                  "Biotechnology Engineering"
+                                  formData.dept === "Biotechnology Engineering"
                                 }
                                 onChange={handleChange}
                               />
@@ -420,7 +449,7 @@ export default function HorizontalLinearStepper() {
                         </div>
                       )}
 
-                      {formData.program === "B. Sc" && (
+                      {formData.course === "B. Sc" && (
                         <div>
                           <label className="block mb-2">Courses:</label>
                           <div className="flex flex-wrap gap-2">
@@ -429,7 +458,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Physics"
-                                checked={formData.courses === "Physics"}
+                                checked={formData.dept === "Physics"}
                                 onChange={handleChange}
                               />
                               Physics
@@ -439,7 +468,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Chemistry"
-                                checked={formData.courses === "Chemistry"}
+                                checked={formData.dept === "Chemistry"}
                                 onChange={handleChange}
                               />
                               Chemistry
@@ -449,7 +478,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Biology"
-                                checked={formData.courses === "Biology"}
+                                checked={formData.dept === "Biology"}
                                 onChange={handleChange}
                               />
                               Biology
@@ -459,9 +488,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Computer Sceince"
-                                checked={
-                                  formData.courses === "Computer Sceince"
-                                }
+                                checked={formData.dept === "Computer Sceince"}
                                 onChange={handleChange}
                               />
                               Computer Sceince
@@ -471,7 +498,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Animation"
-                                checked={formData.courses === "Animation"}
+                                checked={formData.dept === "Animation"}
                                 onChange={handleChange}
                               />
                               Animation
@@ -481,7 +508,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Microbiology"
-                                checked={formData.courses === "Microbiology"}
+                                checked={formData.dept === "Microbiology"}
                                 onChange={handleChange}
                               />
                               Microbiology
@@ -491,7 +518,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Botany"
-                                checked={formData.courses === "Botany"}
+                                checked={formData.dept === "Botany"}
                                 onChange={handleChange}
                               />
                               Botany
@@ -501,7 +528,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Biotechnology"
-                                checked={formData.courses === "Biotechnology"}
+                                checked={formData.dept === "Biotechnology"}
                                 onChange={handleChange}
                               />
                               Biotechnology
@@ -511,7 +538,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Food Technology"
-                                checked={formData.courses === "Food Technology"}
+                                checked={formData.dept === "Food Technology"}
                                 onChange={handleChange}
                               />
                               Food Technology
@@ -522,7 +549,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Information Technology"
                                 checked={
-                                  formData.courses === "Information Technology"
+                                  formData.dept === "Information Technology"
                                 }
                                 onChange={handleChange}
                               />
@@ -534,7 +561,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Computer Programming"
                                 checked={
-                                  formData.courses === "Computer Programming"
+                                  formData.dept === "Computer Programming"
                                 }
                                 onChange={handleChange}
                               />
@@ -545,7 +572,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Psychology"
-                                checked={formData.courses === "Psychology"}
+                                checked={formData.dept === "Psychology"}
                                 onChange={handleChange}
                               />
                               Psychology
@@ -555,7 +582,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Aviation"
-                                checked={formData.courses === "Aviation"}
+                                checked={formData.dept === "Aviation"}
                                 onChange={handleChange}
                               />
                               Aviation
@@ -565,7 +592,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Nursing"
-                                checked={formData.courses === "Nursing"}
+                                checked={formData.dept === "Nursing"}
                                 onChange={handleChange}
                               />
                               Nursing
@@ -575,7 +602,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Cell Biology"
-                                checked={formData.courses === "Cell Biology"}
+                                checked={formData.dept === "Cell Biology"}
                                 onChange={handleChange}
                               />
                               Cell Biology
@@ -585,7 +612,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Forestry"
-                                checked={formData.courses === "Forestry"}
+                                checked={formData.dept === "Forestry"}
                                 onChange={handleChange}
                               />
                               Forestry
@@ -595,7 +622,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Statistics"
-                                checked={formData.courses === "Statistics"}
+                                checked={formData.dept === "Statistics"}
                                 onChange={handleChange}
                               />
                               Statistics
@@ -605,9 +632,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Nautical Science"
-                                checked={
-                                  formData.courses === "Nautical Science"
-                                }
+                                checked={formData.dept === "Nautical Science"}
                                 onChange={handleChange}
                               />
                               Nautical Science
@@ -617,7 +642,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Agriculture"
-                                checked={formData.courses === "Agriculture"}
+                                checked={formData.dept === "Agriculture"}
                                 onChange={handleChange}
                               />
                               Agriculture
@@ -627,7 +652,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Aquaculture"
-                                checked={formData.courses === "Aquaculture"}
+                                checked={formData.dept === "Aquaculture"}
                                 onChange={handleChange}
                               />
                               Aquaculture
@@ -637,7 +662,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Biochemistry"
-                                checked={formData.courses === "Biochemistry"}
+                                checked={formData.dept === "Biochemistry"}
                                 onChange={handleChange}
                               />
                               Biochemistry
@@ -647,7 +672,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Dietetics"
-                                checked={formData.courses === "Dietetics"}
+                                checked={formData.dept === "Dietetics"}
                                 onChange={handleChange}
                               />
                               Dietetics
@@ -657,7 +682,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Electronic"
-                                checked={formData.courses === "Electronic"}
+                                checked={formData.dept === "Electronic"}
                                 onChange={handleChange}
                               />
                               Electronic
@@ -667,9 +692,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Fashion Technology"
-                                checked={
-                                  formData.courses === "Fashion Technology"
-                                }
+                                checked={formData.dept === "Fashion Technology"}
                                 onChange={handleChange}
                               />
                               Fashion Technology
@@ -679,9 +702,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Forensic Science"
-                                checked={
-                                  formData.courses === "Forensic Science"
-                                }
+                                checked={formData.dept === "Forensic Science"}
                                 onChange={handleChange}
                               />
                               Forensic Science
@@ -691,9 +712,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Medical Technology"
-                                checked={
-                                  formData.courses === "Medical Technology"
-                                }
+                                checked={formData.dept === "Medical Technology"}
                                 onChange={handleChange}
                               />
                               Medical Technology
@@ -703,7 +722,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Multimedia"
-                                checked={formData.courses === "Multimedia"}
+                                checked={formData.dept === "Multimedia"}
                                 onChange={handleChange}
                               />
                               Multimedia
@@ -713,7 +732,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Nutrition"
-                                checked={formData.courses === "Nutrition"}
+                                checked={formData.dept === "Nutrition"}
                                 onChange={handleChange}
                               />
                               Nutrition
@@ -723,7 +742,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Physiotherapy"
-                                checked={formData.courses === "Physiotherapy"}
+                                checked={formData.dept === "Physiotherapy"}
                                 onChange={handleChange}
                               />
                               Physiotherapy
@@ -733,7 +752,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Genetics"
-                                checked={formData.courses === "Genetics"}
+                                checked={formData.dept === "Genetics"}
                                 onChange={handleChange}
                               />
                               Genetics
@@ -743,7 +762,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Interior Design"
-                                checked={formData.courses === "Interior Design"}
+                                checked={formData.dept === "Interior Design"}
                                 onChange={handleChange}
                               />
                               Interior Design
@@ -753,7 +772,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Mathematics"
-                                checked={formData.courses === "Mathematics"}
+                                checked={formData.dept === "Mathematics"}
                                 onChange={handleChange}
                               />
                               Mathematics
@@ -763,7 +782,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Zoology"
-                                checked={formData.courses === "Zoology"}
+                                checked={formData.dept === "Zoology"}
                                 onChange={handleChange}
                               />
                               Zoology
@@ -773,7 +792,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Home Science"
-                                checked={formData.courses === "Home Sceince"}
+                                checked={formData.dept === "Home Sceince"}
                                 onChange={handleChange}
                               />
                               Home Sceince
@@ -783,7 +802,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Paleontology"
-                                checked={formData.courses === "Paleontology"}
+                                checked={formData.dept === "Paleontology"}
                                 onChange={handleChange}
                               />
                               Paleontology
@@ -793,7 +812,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Geology"
-                                checked={formData.courses === "Geology"}
+                                checked={formData.dept === "Geology"}
                                 onChange={handleChange}
                               />
                               Geology
@@ -803,7 +822,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Oceanography"
-                                checked={formData.courses === "Oceanography"}
+                                checked={formData.dept === "Oceanography"}
                                 onChange={handleChange}
                               />
                               Oceanography
@@ -813,7 +832,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Astrobiology"
-                                checked={formData.courses === "Astrobiology"}
+                                checked={formData.dept === "Astrobiology"}
                                 onChange={handleChange}
                               />
                               Astrobiology
@@ -823,7 +842,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Astronomy"
-                                checked={formData.courses === "Astronomy"}
+                                checked={formData.dept === "Astronomy"}
                                 onChange={handleChange}
                               />
                               Astronomy
@@ -834,7 +853,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Environment & Sustainability"
                                 checked={
-                                  formData.courses ===
+                                  formData.dept ===
                                   "Environment & Sustainability"
                                 }
                                 onChange={handleChange}
@@ -846,7 +865,7 @@ export default function HorizontalLinearStepper() {
                                 type="radio"
                                 name="courses"
                                 value="Data Science"
-                                checked={formData.courses === "Data Science"}
+                                checked={formData.dept === "Data Science"}
                                 onChange={handleChange}
                               />
                               Data Science
@@ -857,8 +876,7 @@ export default function HorizontalLinearStepper() {
                                 name="courses"
                                 value="Exercise & Sports Science"
                                 checked={
-                                  formData.courses ===
-                                  "Exercise & Sports Science"
+                                  formData.dept === "Exercise & Sports Science"
                                 }
                                 onChange={handleChange}
                               />
@@ -887,7 +905,7 @@ export default function HorizontalLinearStepper() {
                           <option value="C">C</option>
                           <option value="NotNaac">Not Accredited</option>
                         </select>
-                        {errors.collegeName && (
+                        {errors.naac && (
                           <Typography color="error" variant="body2">
                             {errors.naac}
                           </Typography>
@@ -897,8 +915,8 @@ export default function HorizontalLinearStepper() {
                       <div>
                         <label className="block mb-2">NBA Approved:</label>
                         <select
-                          name="nbaApproved"
-                          value={formData.nbaApproved}
+                          name="nba"
+                          value={formData.nba}
                           onChange={handleChange}
                           className="border w-full"
                           required
@@ -908,11 +926,11 @@ export default function HorizontalLinearStepper() {
                           <option value="No">No</option>
                           <option value="N/A">N/A</option>
                         </select>
-                        {errors.collegeName && (
+                        {/* {errors.nba && (
                           <Typography color="error" variant="body2">
                             {errors.nba}
                           </Typography>
-                        )}
+                        )} */}
                       </div>
 
                       <div>
@@ -925,7 +943,7 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
-                        {errors.collegeName && (
+                        {errors.nirf && (
                           <Typography color="error" variant="body2">
                             {errors.nirf}
                           </Typography>
@@ -942,7 +960,7 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
-                        {errors.collegeName && (
+                        {errors.address && (
                           <Typography color="error" variant="body2">
                             {errors.address}
                           </Typography>
@@ -950,6 +968,25 @@ export default function HorizontalLinearStepper() {
                       </div>
 
                       <div>
+                        <label className="block mb-2">
+                          Admission Criteria:
+                        </label>
+                        <input
+                          type="text"
+                          name="admission_criteria"
+                          value={formData.admission_criteria}
+                          onChange={handleChange}
+                          className="border w-full"
+                          required
+                        />
+                        {errors.admission_criteria && (
+                          <Typography color="error" variant="body2">
+                            {errors.admission_criteria}
+                          </Typography>
+                        )}
+                      </div>
+
+                      {/* <div>
                         <label className="block mb-2">State:</label>
                         <select
                           name="state"
@@ -1011,12 +1048,12 @@ export default function HorizontalLinearStepper() {
                             {errors.state}
                           </Typography>
                         )}
-                      </div>
+                      </div> */}
 
                       <div>
                         <label className="block mb-2">Course Fees:</label>
                         <select
-                          name="courseFees"
+                          name="fees"
                           value={formData.courseFees}
                           onChange={handleChange}
                           className="border w-full"
@@ -1029,9 +1066,9 @@ export default function HorizontalLinearStepper() {
                           <option value="1.5L-2L">1.5L-2L</option>
                           <option value="2L+">Above 2L</option>
                         </select>
-                        {errors.collegeName && (
+                        {errors.fees && (
                           <Typography color="error" variant="body2">
-                            {errors.courseFees}
+                            {errors.fees}
                           </Typography>
                         )}
                       </div>
@@ -1046,7 +1083,7 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
-                        {errors.collegeName && (
+                        {errors.intake && (
                           <Typography color="error" variant="body2">
                             {errors.intake}
                           </Typography>
@@ -1063,7 +1100,7 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
-                        {errors.collegeName && (
+                        {errors.faculty && (
                           <Typography color="error" variant="body2">
                             {errors.faculty}
                           </Typography>
@@ -1080,7 +1117,7 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
-                        {errors.collegeName && (
+                        {errors.website && (
                           <Typography color="error" variant="body2">
                             {errors.website}
                           </Typography>
@@ -1097,7 +1134,7 @@ export default function HorizontalLinearStepper() {
                           className="border w-full"
                           required
                         />
-                        {errors.collegeName && (
+                        {errors.contact && (
                           <Typography color="error" variant="body2">
                             {errors.contact}
                           </Typography>
@@ -1111,10 +1148,10 @@ export default function HorizontalLinearStepper() {
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
-                          className="border p-2 mb-4 w-full"
+                          className="border p-2 w-full"
                           required
                         />
-                        {errors.collegeName && (
+                        {errors.email && (
                           <Typography color="error" variant="body2">
                             {errors.email}
                           </Typography>
@@ -1153,9 +1190,31 @@ export default function HorizontalLinearStepper() {
                 >
                   Back
                 </Button>
-                <Box sx={{ flex: "1 1 auto" }} className="mb-5" />
+                {/* <Box sx={{ flex: "1 1 auto" }} className="mb-5" />
                 <Button
                   onClick={handleNext}
+                  sx={{
+                    backgroundColor: "#0969FF",
+                    marginBottom: "50px",
+                    color: "white",
+                    "&:hover": {
+                      backgroundColor: "#0A30C1",
+                    },
+                  }}
+                >
+                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                </Button>
+              </Box> */}
+
+                <Box sx={{ flex: "1 1 auto" }} className="mb-5" />
+                <Button
+                  onClick={(e) => {
+                    if (activeStep === steps.length - 1) {
+                      handleSubmit(e); // Call handleSubmit when it's the last step
+                    } else {
+                      handleNext(); // Proceed to the next step if not the last one
+                    }
+                  }}
                   sx={{
                     backgroundColor: "#0969FF",
                     marginBottom: "50px",

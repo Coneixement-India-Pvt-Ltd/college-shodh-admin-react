@@ -4,6 +4,7 @@ import HashLoader from "react-spinners/HashLoader";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
+import { toast } from "react-toastify";
 
 // for card icons
 import { IoLocationOutline } from "react-icons/io5";
@@ -93,6 +94,20 @@ const Card = () => {
     marginTop: "-300px",
   };
 
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/dashboard/college/${id}`);
+      // Remove the deleted listing from the state
+      setColleges(colleges.filter(college => college._id !== id));
+      toast.success('Listing deleted successfully');
+    } catch (error) {
+      console.error('Error deleting listing:', error);
+      toast.error('Failed to delete listing');
+    }
+  };
+    
+
   return (
     <div className="flex flex-col ml-64 mt-2 items-left mb-0">
       {loading ? (
@@ -172,7 +187,8 @@ const Card = () => {
               </div>
 
               <div className="flex justify-end mt-2 ml-auto mb-1 gap-1">
-                <Link to="/dashboard/edit/:id">
+                {/* <Link to="/dashboard/edit/:id"> */}
+                <Link to={`/dashboard/edit/${college._id}`}>
                   <Button
                     className="text-white rounded-lg p-2 w-24"
                     style={{ backgroundColor: "#FF5A1F" }}
@@ -185,6 +201,7 @@ const Card = () => {
                     variant="contained"
                     className="text-white rounded-lg p-2 w-24"
                     style={{ backgroundColor: "#4A9CDF" }}
+                    onClick={() => { handleDelete(college._id) } }
                   >
                     Delete
                   </Button>
