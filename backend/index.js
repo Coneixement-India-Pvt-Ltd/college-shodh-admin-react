@@ -203,41 +203,85 @@ app.get("/api/courses", async (req, res) => {
   }
 });
 
-// MongoDB client initialization
-const client = new MongoClient(process.env.ATLASDB_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-app.post("/dashboard/create-bulk", upload.single("file"), async (req, res) => {
-  const filePath = req.file.path;
-
-  // Read the Excel file
-  const workbook = XLSX.readFile(filePath);
-  const sheetName = workbook.SheetNames[0];
-  const sheet = workbook.Sheets[sheetName];
-  const data = XLSX.utils.sheet_to_json(sheet);
-
-  console.log("Parsed Excel data:", data);
-
+// create route
+app.post("/dashboard/create", async (req, res) => {
   try {
-    await client.connect();
-    console.log("Connected successfully to MongoDB");
-    const database = client.db("collegeShodh"); // Replace with your database name
-    const collection = database.collection("colleges"); // Replace with your collection name
-
-    // Insert data into MongoDB
-    await collection.insertMany(data);
-    console.log(`Inserted ${result.insertedCount} documents`);
-
-    res.send("Data imported successfully!");
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error importing data");
-  } finally {
-    await client.close();
+    const newListing = new College(req.body);
+    await newListing.save();
+    console.log("Listing created successfully:", newListing);
+    res.status(201).json({ message: "Listing created successfully" });
+  } catch (error) {
+    console.error("Error creating listing:", error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while creating the listing" });
   }
 });
+
+
+//  edit route
+app.get('/dashboard/edit/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const listing = await College.findById(id);
+    
+    if (!listing) {
+      return res.status(404).json({ message: 'Listing not found' });
+    }
+    res.status(200).json(listing);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// update route
+app.put("/dashboard/edit/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedListing = await College.findByIdAndUpdate(id, req.body
+    );
+    if (!updatedListing) {
+      return res.status(404).json({ message: 'Listing not found' });
+    }
+    // res.redirect('/dashboard/college');
+    res.status(200).json({ message: 'Listing updated successfully' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+
+
+
+// delete route
+app.delete("/dashboard/college/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Validate the listing ID
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: "Invalid college listing ID" });
+    }
+
+    const deletedCollege = await College.findByIdAndDelete(id);
+
+    if (!deletedCollege) {
+      return res.status(404).json({ error: "College listing not found" });
+    }
+
+    res.status(200).json({ message: "Listing deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting college listing:", err);
+    res
+      .status(500)
+      .json({ error: "An error occurred while deleting the college listing" });
+  }
+
+});
+
+
+
+
 
 app.get("/", function (req, res) {
   res.send("Hello World");
