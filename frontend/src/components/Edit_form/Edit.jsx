@@ -104,7 +104,7 @@ const Edit = () => {
   //     { name: "contact", label: "Contact is required" },
   //     { name: "email", label: "Email is required" },
   //     { name: "nba", label: "NBA Approval status is required" },
-  //     // { name: "dept", label: "Courses are required" },
+  //     // { name: "dept", label: "dept are required" },
   //   ];
 
   //   const newErrors = {};
@@ -188,7 +188,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Computer Science Engineering"
                 checked={formData.dept === "Computer Science Engineering"}
                 onChange={handleChange}
@@ -198,7 +198,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Mechanical Engineering"
                 checked={formData.dept === "Mechanical Engineering"}
                 onChange={handleChange}
@@ -208,7 +208,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Electrical Engineering"
                 checked={formData.dept === "Electrical Engineering"}
                 onChange={handleChange}
@@ -218,7 +218,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Civil Engineering"
                 checked={formData.dept === "Civil Engineering"}
                 onChange={handleChange}
@@ -228,7 +228,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Aeronautical Engineering"
                 checked={formData.dept === "Aeronautical Engineering"}
                 onChange={handleChange}
@@ -238,7 +238,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Chemical Engineering"
                 checked={formData.dept === "Chemical Engineering"}
                 onChange={handleChange}
@@ -248,7 +248,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Automobile Engineering"
                 checked={formData.dept === "Automobile Engineering"}
                 onChange={handleChange}
@@ -258,7 +258,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Biomedical Engineering"
                 checked={formData.dept === "Biomedical Engineering"}
                 onChange={handleChange}
@@ -268,7 +268,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Aerospace Engineering"
                 checked={formData.dept === "Aerospace Engineering"}
                 onChange={handleChange}
@@ -278,7 +278,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Marine Engineering"
                 checked={formData.dept === "Marine Engineering"}
                 onChange={handleChange}
@@ -288,7 +288,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Petroleum Engineering"
                 checked={formData.dept === "Petroleum Engineering"}
                 onChange={handleChange}
@@ -298,7 +298,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Food Engineering"
                 checked={formData.dept === "Food Engineering"}
                 onChange={handleChange}
@@ -308,7 +308,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Agricultural Engineering"
                 checked={formData.dept === "Agricultural Engineering"}
                 onChange={handleChange}
@@ -318,7 +318,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Information Technology Engineering"
                 checked={formData.dept === "Information Technology Engineering"}
                 onChange={handleChange}
@@ -328,7 +328,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Biotechnology Engineering"
                 checked={formData.dept === "Biotechnology Engineering"}
                 onChange={handleChange}
@@ -346,7 +346,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Physics"
                 checked={formData.dept === "Physics"}
                 onChange={handleChange}
@@ -356,7 +356,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Chemistry"
                 checked={formData.dept === "Chemistry"}
                 onChange={handleChange}
@@ -366,7 +366,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Biology"
                 checked={formData.dept === "Biology"}
                 onChange={handleChange}
@@ -376,7 +376,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Computer Sceince"
                 checked={formData.dept === "Computer Sceince"}
                 onChange={handleChange}
@@ -386,7 +386,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Animation"
                 checked={formData.dept === "Animation"}
                 onChange={handleChange}
@@ -396,7 +396,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Microbiology"
                 checked={formData.dept === "Microbiology"}
                 onChange={handleChange}
@@ -406,7 +406,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Botany"
                 checked={formData.dept === "Botany"}
                 onChange={handleChange}
@@ -416,7 +416,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Biotechnology"
                 checked={formData.dept === "Biotechnology"}
                 onChange={handleChange}
@@ -426,7 +426,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Food Technology"
                 checked={formData.dept === "Food Technology"}
                 onChange={handleChange}
@@ -436,7 +436,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Information Technology"
                 checked={formData.dept === "Information Technology"}
                 onChange={handleChange}
@@ -446,7 +446,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Computer Programming"
                 checked={formData.dept === "Computer Programming"}
                 onChange={handleChange}
@@ -456,7 +456,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Psychology"
                 checked={formData.dept === "Psychology"}
                 onChange={handleChange}
@@ -466,7 +466,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Aviation"
                 checked={formData.dept === "Aviation"}
                 onChange={handleChange}
@@ -476,7 +476,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Nursing"
                 checked={formData.dept === "Nursing"}
                 onChange={handleChange}
@@ -486,7 +486,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Cell Biology"
                 checked={formData.dept === "Cell Biology"}
                 onChange={handleChange}
@@ -496,7 +496,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Forestry"
                 checked={formData.dept === "Forestry"}
                 onChange={handleChange}
@@ -506,7 +506,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Statistics"
                 checked={formData.dept === "Statistics"}
                 onChange={handleChange}
@@ -516,7 +516,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Nautical Science"
                 checked={formData.dept === "Nautical Science"}
                 onChange={handleChange}
@@ -526,7 +526,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Agriculture"
                 checked={formData.dept === "Agriculture"}
                 onChange={handleChange}
@@ -536,7 +536,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Aquaculture"
                 checked={formData.dept === "Aquaculture"}
                 onChange={handleChange}
@@ -546,7 +546,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Biochemistry"
                 checked={formData.dept === "Biochemistry"}
                 onChange={handleChange}
@@ -556,7 +556,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Dietetics"
                 checked={formData.dept === "Dietetics"}
                 onChange={handleChange}
@@ -566,7 +566,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Electronic"
                 checked={formData.dept === "Electronic"}
                 onChange={handleChange}
@@ -576,7 +576,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Fashion Technology"
                 checked={formData.dept === "Fashion Technology"}
                 onChange={handleChange}
@@ -586,7 +586,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Forensic Science"
                 checked={formData.dept === "Forensic Science"}
                 onChange={handleChange}
@@ -596,7 +596,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Medical Technology"
                 checked={formData.dept === "Medical Technology"}
                 onChange={handleChange}
@@ -606,7 +606,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Multimedia"
                 checked={formData.dept === "Multimedia"}
                 onChange={handleChange}
@@ -616,7 +616,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Nutrition"
                 checked={formData.dept === "Nutrition"}
                 onChange={handleChange}
@@ -626,7 +626,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Physiotherapy"
                 checked={formData.dept === "Physiotherapy"}
                 onChange={handleChange}
@@ -636,7 +636,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Genetics"
                 checked={formData.dept === "Genetics"}
                 onChange={handleChange}
@@ -646,7 +646,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Interior Design"
                 checked={formData.dept === "Interior Design"}
                 onChange={handleChange}
@@ -656,7 +656,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Mathematics"
                 checked={formData.dept === "Mathematics"}
                 onChange={handleChange}
@@ -666,7 +666,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Zoology"
                 checked={formData.dept === "Zoology"}
                 onChange={handleChange}
@@ -676,7 +676,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Home Science"
                 checked={formData.dept === "Home Sceince"}
                 onChange={handleChange}
@@ -686,7 +686,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Paleontology"
                 checked={formData.dept === "Paleontology"}
                 onChange={handleChange}
@@ -696,7 +696,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Geology"
                 checked={formData.dept === "Geology"}
                 onChange={handleChange}
@@ -706,7 +706,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Oceanography"
                 checked={formData.dept === "Oceanography"}
                 onChange={handleChange}
@@ -716,7 +716,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Astrobiology"
                 checked={formData.dept === "Astrobiology"}
                 onChange={handleChange}
@@ -726,7 +726,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Astronomy"
                 checked={formData.dept === "Astronomy"}
                 onChange={handleChange}
@@ -736,7 +736,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Environment & Sustainability"
                 checked={formData.dept === "Environment & Sustainability"}
                 onChange={handleChange}
@@ -746,7 +746,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Data Science"
                 checked={formData.dept === "Data Science"}
                 onChange={handleChange}
@@ -756,7 +756,7 @@ const Edit = () => {
             <label>
               <input
                 type="radio"
-                name="courses"
+                name="dept"
                 value="Exercise & Sports Science"
                 checked={formData.dept === "Exercise & Sports Science"}
                 onChange={handleChange}
