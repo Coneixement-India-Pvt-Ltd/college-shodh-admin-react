@@ -162,13 +162,13 @@ const Modal = ({ closeModal, type }) => {
   }, []);
 
   const bscCourses = [
-    { name: "Physics", img: "/images/science.png" },
-    { name: "Chemistry", img: "/images/science.png" },
+    { name: "Physics", img: "/icons/BSC/Physics.jpg" },
+    { name: "Chemistry", img: "/icons/BSC/Chemistry.jpg" },
     { name: "Biology", img: "/images/science.png" },
-    { name: "Mathematics", img: "/images/science.png" },
-    { name: "Microbiology", img: "/images/science.png" },
-    { name: "Nursing", img: "/images/science.png" },
-    { name: "Home Science", img: "/images/science.png" },
+    { name: "Mathematics", img: "/icons/BSC/math.jpg" },
+    { name: "Microbiology", img: "/icons/BSC/microbiology.jpg" },
+    { name: "Nursing", img: "/icons/BSC/nursing.jpg" },
+    { name: "Home Science", img: "/icons/BSC/Home Science.jpg" },
     { name: "Bio Technology", img: "/images/science.png" },
     { name: "Environmental Science", img: "/images/science.png" },
     { name: "Agriculture", img: "/images/science.png" },

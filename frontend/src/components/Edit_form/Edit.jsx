@@ -68,7 +68,6 @@ const Edit = () => {
         formData
       );
       if (response.status === 200) {
-        
         toast.success("Edit successful");
         navigate("/dashboard/college");
       } else {
@@ -88,39 +87,6 @@ const Edit = () => {
     }));
   };
 
-  // const validateForm = () => {
-  //   const fields = [
-  //     { name: "college_name", label: "College Name is required" },
-  //     { name: "university", label: "University is required" },
-  //     { name: "course", label: "Program is required" },
-  //     { name: "naac", label: "NAAC is required" },
-  //     { name: "nirf", label: "NIRF is required" },
-  //     { name: "admission_criteria", label: "Admission criteria is required" },
-  //     { name: "address", label: "Address is required" },
-  //     { name: "fees", label: "Course Fees are required" },
-  //     { name: "intake", label: "Intake is required" },
-  //     { name: "faculty", label: "Faculty is required" },
-  //     { name: "website", label: "Website is required" },
-  //     { name: "contact", label: "Contact is required" },
-  //     { name: "email", label: "Email is required" },
-  //     { name: "nba", label: "NBA Approval status is required" },
-  //     // { name: "dept", label: "Courses are required" },
-  //   ];
-
-  //   const newErrors = {};
-  //   console.log(newErrors);
-
-  //   fields.map((field) => {
-  //     if (!formData[field.name]) {
-  //       newErrors[field.name] = field.label;
-  //     }
-  //     return null;
-  //   });
-
-  //   setErrors(newErrors);
-  //   return Object.keys(newErrors).length === 0;
-  // };
-
   return (
     <div className="grid grid-cols-1 gap-4 ml-96 mr-40 mt-20">
       <h1 className=" text-2xl font-semibold">Edit Form</h1>
@@ -134,11 +100,11 @@ const Edit = () => {
           className="border w-full"
           required
         />
-        {/* {errors.college_name && (
+        {errors.college_name && (
           <Typography color="error" variant="body2">
             {errors.college_name}
           </Typography>
-        )} */}
+        )}
       </div>
 
       <div>
@@ -151,11 +117,11 @@ const Edit = () => {
           className="border w-full"
           required
         />
-        {/* {errors.university && (
+        {errors.university && (
           <Typography color="error" variant="body2">
             {errors.university}
           </Typography>
-        )} */}
+        )}
       </div>
 
       <div>
@@ -864,70 +830,6 @@ const Edit = () => {
           </Typography>
         )}
       </div>
-
-      {/* <div>
-                        <label className="block mb-2">State:</label>
-                        <select
-                          name="state"
-                          value={formData.state}
-                          onChange={handleChange}
-                          className="border w-full"
-                          required
-                        >
-                          <option value="">Select State</option>
-                          <option value="Andhra Pradesh">Andhra Pradesh</option>
-                          <option value="Arunachal Pradesh">
-                            Arunachal Pradesh
-                          </option>
-                          <option value="Assam">Assam</option>
-                          <option value="Bihar">Bihar</option>
-                          <option value="Chhattisgarh">Chhattisgarh</option>
-                          <option value="Goa">Goa</option>
-                          <option value="Gujarat">Gujarat</option>
-                          <option value="Haryana">Haryana</option>
-                          <option value="Himachal Pradesh">
-                            Himachal Pradesh
-                          </option>
-                          <option value="Jammu and Kashmir">
-                            Jammu and Kashmir
-                          </option>
-                          <option value="Jharkhand">Jharkhand</option>
-                          <option value="Karnataka">Karnataka</option>
-                          <option value="Kerala">Kerala</option>
-                          <option value="Madhya Pradesh">Madhya Pradesh</option>
-                          <option value="Maharashtra">Maharashtra</option>
-                          <option value="Manipur">Manipur</option>
-                          <option value="Meghalaya">Meghalaya</option>
-                          <option value="Mizoram">Mizoram</option>
-                          <option value="Nagaland">Nagaland</option>
-                          <option value="Odisha">Odisha</option>
-                          <option value="Punjab">Punjab</option>
-                          <option value="Rajasthan">Rajasthan</option>
-                          <option value="Sikkim">Sikkim</option>
-                          <option value="Tamil Nadu">Tamil Nadu</option>
-                          <option value="Telangana">Telangana</option>
-                          <option value="Tripura">Tripura</option>
-                          <option value="Uttarakhand">Uttarakhand</option>
-                          <option value="Uttar Pradesh">Uttar Pradesh</option>
-                          <option value="West Bengal">West Bengal</option>
-                          <option value="Andaman and Nicobar Islands">
-                            Andaman and Nicobar Islands
-                          </option>
-                          <option value="Chandigarh">Chandigarh</option>
-                          <option value="Dadra and Nagar Haveli">
-                            Dadra and Nagar Haveli
-                          </option>
-                          <option value="Daman and Diu">Daman and Diu</option>
-                          <option value="Delhi">Delhi</option>
-                          <option value="Lakshadweep">Lakshadweep</option>
-                          <option value="Puducherry">Puducherry</option>
-                        </select>
-                        {errors.collegeName && (
-                          <Typography color="error" variant="body2">
-                            {errors.state}
-                          </Typography>
-                        )}
-                      </div> */}
 
       <div>
         <label className="block mb-2">Course Fees:</label>

@@ -279,6 +279,7 @@ export default function HorizontalLinearStepper() {
                                   "Computer Science Engineering"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Computer Science Engineering
                             </label>
@@ -291,6 +292,7 @@ export default function HorizontalLinearStepper() {
                                   formData.dept === "Mechanical Engineering"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Mechanical Engineering
                             </label>
@@ -303,6 +305,7 @@ export default function HorizontalLinearStepper() {
                                   formData.dept === "Electrical Engineering"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Electrical Engineering
                             </label>
@@ -313,6 +316,7 @@ export default function HorizontalLinearStepper() {
                                 value="Civil Engineering"
                                 checked={formData.dept === "Civil Engineering"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Civil Engineering
                             </label>
@@ -325,6 +329,7 @@ export default function HorizontalLinearStepper() {
                                   formData.dept === "Aeronautical Engineering"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Aeronautical Engineering
                             </label>
@@ -337,6 +342,7 @@ export default function HorizontalLinearStepper() {
                                   formData.dept === "Chemical Engineering"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Chemical Engineering
                             </label>
@@ -349,6 +355,7 @@ export default function HorizontalLinearStepper() {
                                   formData.dept === "Automobile Engineering"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Automobile Engineering
                             </label>
@@ -361,6 +368,7 @@ export default function HorizontalLinearStepper() {
                                   formData.dept === "Biomedical Engineering"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Biomedical Engineering
                             </label>
@@ -373,6 +381,7 @@ export default function HorizontalLinearStepper() {
                                   formData.dept === "Aerospace Engineering"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Aerospace Engineering
                             </label>
@@ -383,6 +392,8 @@ export default function HorizontalLinearStepper() {
                                 value="Marine Engineering"
                                 checked={formData.dept === "Marine Engineering"}
                                 onChange={handleChange}
+                                className="mr-1"
+
                               />
                               Marine Engineering
                             </label>
@@ -395,6 +406,7 @@ export default function HorizontalLinearStepper() {
                                   formData.dept === "Petroleum Engineering"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Petroleum Engineering
                             </label>
@@ -405,6 +417,7 @@ export default function HorizontalLinearStepper() {
                                 value="Food Engineering"
                                 checked={formData.dept === "Food Engineering"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Food Engineering
                             </label>
@@ -417,6 +430,7 @@ export default function HorizontalLinearStepper() {
                                   formData.dept === "Agricultural Engineering"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Agricultural Engineering
                             </label>
@@ -430,6 +444,7 @@ export default function HorizontalLinearStepper() {
                                   "Information Technology Engineering"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Information Technology Engineering
                             </label>
@@ -442,6 +457,7 @@ export default function HorizontalLinearStepper() {
                                   formData.dept === "Biotechnology Engineering"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Biotechnology Engineering
                             </label>
@@ -460,6 +476,7 @@ export default function HorizontalLinearStepper() {
                                 value="Physics"
                                 checked={formData.dept === "Physics"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Physics
                             </label>
@@ -470,6 +487,7 @@ export default function HorizontalLinearStepper() {
                                 value="Chemistry"
                                 checked={formData.dept === "Chemistry"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Chemistry
                             </label>
@@ -480,6 +498,7 @@ export default function HorizontalLinearStepper() {
                                 value="Biology"
                                 checked={formData.dept === "Biology"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Biology
                             </label>
@@ -490,6 +509,7 @@ export default function HorizontalLinearStepper() {
                                 value="Computer Sceince"
                                 checked={formData.dept === "Computer Sceince"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Computer Sceince
                             </label>
@@ -500,6 +520,7 @@ export default function HorizontalLinearStepper() {
                                 value="Animation"
                                 checked={formData.dept === "Animation"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Animation
                             </label>
@@ -510,6 +531,7 @@ export default function HorizontalLinearStepper() {
                                 value="Microbiology"
                                 checked={formData.dept === "Microbiology"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Microbiology
                             </label>
@@ -520,6 +542,7 @@ export default function HorizontalLinearStepper() {
                                 value="Botany"
                                 checked={formData.dept === "Botany"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Botany
                             </label>
@@ -530,6 +553,7 @@ export default function HorizontalLinearStepper() {
                                 value="Biotechnology"
                                 checked={formData.dept === "Biotechnology"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Biotechnology
                             </label>
@@ -540,6 +564,7 @@ export default function HorizontalLinearStepper() {
                                 value="Food Technology"
                                 checked={formData.dept === "Food Technology"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Food Technology
                             </label>
@@ -552,6 +577,7 @@ export default function HorizontalLinearStepper() {
                                   formData.dept === "Information Technology"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Information Technology
                             </label>
@@ -564,6 +590,7 @@ export default function HorizontalLinearStepper() {
                                   formData.dept === "Computer Programming"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Computer Programming
                             </label>
@@ -574,6 +601,7 @@ export default function HorizontalLinearStepper() {
                                 value="Psychology"
                                 checked={formData.dept === "Psychology"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Psychology
                             </label>
@@ -584,6 +612,7 @@ export default function HorizontalLinearStepper() {
                                 value="Aviation"
                                 checked={formData.dept === "Aviation"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Aviation
                             </label>
@@ -594,6 +623,7 @@ export default function HorizontalLinearStepper() {
                                 value="Nursing"
                                 checked={formData.dept === "Nursing"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Nursing
                             </label>
@@ -604,6 +634,7 @@ export default function HorizontalLinearStepper() {
                                 value="Cell Biology"
                                 checked={formData.dept === "Cell Biology"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Cell Biology
                             </label>
@@ -614,6 +645,7 @@ export default function HorizontalLinearStepper() {
                                 value="Forestry"
                                 checked={formData.dept === "Forestry"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Forestry
                             </label>
@@ -624,6 +656,7 @@ export default function HorizontalLinearStepper() {
                                 value="Statistics"
                                 checked={formData.dept === "Statistics"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Statistics
                             </label>
@@ -634,6 +667,7 @@ export default function HorizontalLinearStepper() {
                                 value="Nautical Science"
                                 checked={formData.dept === "Nautical Science"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Nautical Science
                             </label>
@@ -644,6 +678,7 @@ export default function HorizontalLinearStepper() {
                                 value="Agriculture"
                                 checked={formData.dept === "Agriculture"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Agriculture
                             </label>
@@ -654,6 +689,7 @@ export default function HorizontalLinearStepper() {
                                 value="Aquaculture"
                                 checked={formData.dept === "Aquaculture"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Aquaculture
                             </label>
@@ -664,6 +700,7 @@ export default function HorizontalLinearStepper() {
                                 value="Biochemistry"
                                 checked={formData.dept === "Biochemistry"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Biochemistry
                             </label>
@@ -674,6 +711,7 @@ export default function HorizontalLinearStepper() {
                                 value="Dietetics"
                                 checked={formData.dept === "Dietetics"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Dietetics
                             </label>
@@ -684,6 +722,7 @@ export default function HorizontalLinearStepper() {
                                 value="Electronic"
                                 checked={formData.dept === "Electronic"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Electronic
                             </label>
@@ -694,6 +733,7 @@ export default function HorizontalLinearStepper() {
                                 value="Fashion Technology"
                                 checked={formData.dept === "Fashion Technology"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Fashion Technology
                             </label>
@@ -704,6 +744,7 @@ export default function HorizontalLinearStepper() {
                                 value="Forensic Science"
                                 checked={formData.dept === "Forensic Science"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Forensic Science
                             </label>
@@ -714,6 +755,7 @@ export default function HorizontalLinearStepper() {
                                 value="Medical Technology"
                                 checked={formData.dept === "Medical Technology"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Medical Technology
                             </label>
@@ -724,6 +766,7 @@ export default function HorizontalLinearStepper() {
                                 value="Multimedia"
                                 checked={formData.dept === "Multimedia"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Multimedia
                             </label>
@@ -734,6 +777,7 @@ export default function HorizontalLinearStepper() {
                                 value="Nutrition"
                                 checked={formData.dept === "Nutrition"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Nutrition
                             </label>
@@ -744,6 +788,7 @@ export default function HorizontalLinearStepper() {
                                 value="Physiotherapy"
                                 checked={formData.dept === "Physiotherapy"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Physiotherapy
                             </label>
@@ -754,6 +799,7 @@ export default function HorizontalLinearStepper() {
                                 value="Genetics"
                                 checked={formData.dept === "Genetics"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Genetics
                             </label>
@@ -764,6 +810,7 @@ export default function HorizontalLinearStepper() {
                                 value="Interior Design"
                                 checked={formData.dept === "Interior Design"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Interior Design
                             </label>
@@ -774,6 +821,7 @@ export default function HorizontalLinearStepper() {
                                 value="Mathematics"
                                 checked={formData.dept === "Mathematics"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Mathematics
                             </label>
@@ -784,6 +832,7 @@ export default function HorizontalLinearStepper() {
                                 value="Zoology"
                                 checked={formData.dept === "Zoology"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Zoology
                             </label>
@@ -794,6 +843,7 @@ export default function HorizontalLinearStepper() {
                                 value="Home Science"
                                 checked={formData.dept === "Home Sceince"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Home Sceince
                             </label>
@@ -804,6 +854,7 @@ export default function HorizontalLinearStepper() {
                                 value="Paleontology"
                                 checked={formData.dept === "Paleontology"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Paleontology
                             </label>
@@ -814,6 +865,7 @@ export default function HorizontalLinearStepper() {
                                 value="Geology"
                                 checked={formData.dept === "Geology"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Geology
                             </label>
@@ -834,6 +886,7 @@ export default function HorizontalLinearStepper() {
                                 value="Astrobiology"
                                 checked={formData.dept === "Astrobiology"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Astrobiology
                             </label>
@@ -844,6 +897,7 @@ export default function HorizontalLinearStepper() {
                                 value="Astronomy"
                                 checked={formData.dept === "Astronomy"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Astronomy
                             </label>
@@ -857,6 +911,7 @@ export default function HorizontalLinearStepper() {
                                   "Environment & Sustainability"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Environment & Sustainability
                             </label>
@@ -867,6 +922,7 @@ export default function HorizontalLinearStepper() {
                                 value="Data Science"
                                 checked={formData.dept === "Data Science"}
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Data Science
                             </label>
@@ -879,6 +935,7 @@ export default function HorizontalLinearStepper() {
                                   formData.dept === "Exercise & Sports Science"
                                 }
                                 onChange={handleChange}
+                                className="mr-1"
                               />
                               Exercise & Sports Sceince
                             </label>
