@@ -210,7 +210,17 @@ app.get("/dashboard", isAuthorized, (req, res) => {
 });
 
 // API route to get courses (public route)
-app.get("/api/courses", async (req, res) => {
+// app.get("/api/courses", async (req, res) => {
+//   try {
+//     const listings = await College.find();
+//     res.status(200).json(listings);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
+
+// colleges route
+app.get("/dashboard/college",isAuthorized, async (req, res) => {
   try {
     const listings = await College.find();
     res.status(200).json(listings);
@@ -220,7 +230,7 @@ app.get("/api/courses", async (req, res) => {
 });
 
 // create route
-app.post("/dashboard/create", async (req, res) => {
+app.post("/dashboard/create", isAuthorized, async (req, res) => {
   try {
     const newListing = new College(req.body);
     await newListing.save();
@@ -251,7 +261,7 @@ app.get('/dashboard/edit/:id', async (req, res) => {
 });
 
 // update route
-app.put("/dashboard/edit/:id", async (req, res) => {
+app.put("/dashboard/edit/:id", isAuthorized, async (req, res) => {
   try {
     const { id } = req.params;
     const updatedListing = await College.findByIdAndUpdate(id, req.body
@@ -270,7 +280,7 @@ app.put("/dashboard/edit/:id", async (req, res) => {
 
 
 // delete route
-app.delete("/dashboard/college/:id", async (req, res) => {
+app.delete("/dashboard/college/:id", isAuthorized, async (req, res) => {
   try {
     const { id } = req.params;
 
