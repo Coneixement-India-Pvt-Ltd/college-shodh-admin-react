@@ -28,7 +28,7 @@ const Card = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/courses")
+      .get("http://localhost:3000/dashboard/college")
       .then((response) => {
         setColleges(response.data);
         setLoading(false); // Set loading to false after data is fetched
@@ -123,7 +123,7 @@ const Card = () => {
         displayedColleges.map((college) => (
           <div
             key={college._id}
-            className="border-b border-gray-300 border rounded-lg p-2 pl-6 pr-6 mb-5 mr-32 ml-20 hover:shadow-2xl transition-shadow "
+            className="border-b border-gray-300 border rounded-lg p-2 pl-6 pr-6 mb-4 mr-32 ml-20 hover:shadow-2xl transition-shadow "
           >
             <h1 className="text-xl font-bold text-gray-900 text-left">
               {college.college_name}
@@ -191,7 +191,7 @@ const Card = () => {
                 <Link to={`/dashboard/edit/${college._id}`}>
                   <Button
                     className="text-white rounded-lg p-2 w-24"
-                    style={{ backgroundColor: "#FF5A1F" }}
+                    style={{ backgroundColor: "#53BD1E" }}
                   >
                     Edit
                   </Button>
@@ -200,7 +200,7 @@ const Card = () => {
                   <Button
                     variant="contained"
                     className="text-white rounded-lg p-2 w-24"
-                    style={{ backgroundColor: "#4A9CDF" }}
+                    style={{ backgroundColor: "#F01E2C" }}
                     onClick={() => { handleDelete(college._id) } }
                   >
                     Delete
@@ -214,7 +214,7 @@ const Card = () => {
                 >
                   <Button
                     className="text-white rounded-lg p-2 w-full"
-                    style={{ backgroundColor: "#95C730" }}
+                    style={{ backgroundColor: "#1F7FCF" }}
                   >
                     Know more
                   </Button>
