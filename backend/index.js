@@ -228,15 +228,14 @@ app.post("/dashboard/create", isAuthorized, async (req, res) => {
   }
 });
 
-
 //  edit route
-app.get('/dashboard/edit/:id', async (req, res) => {
+app.get("/dashboard/edit/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const listing = await College.findById(id);
-    
+
     if (!listing) {
-      return res.status(404).json({ message: 'Listing not found' });
+      return res.status(404).json({ message: "Listing not found" });
     }
     res.status(200).json(listing);
   } catch (err) {
@@ -248,20 +247,16 @@ app.get('/dashboard/edit/:id', async (req, res) => {
 app.put("/dashboard/edit/:id", isAuthorized, async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedListing = await College.findByIdAndUpdate(id, req.body
-    );
+    const updatedListing = await College.findByIdAndUpdate(id, req.body);
     if (!updatedListing) {
-      return res.status(404).json({ message: 'Listing not found' });
+      return res.status(404).json({ message: "Listing not found" });
     }
     // res.redirect('/dashboard/college');
-    res.status(200).json({ message: 'Listing updated successfully' });
+    res.status(200).json({ message: "Listing updated successfully" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
-
-
-
 
 // delete route
 app.delete("/dashboard/college/:id", isAuthorized, async (req, res) => {
@@ -286,12 +281,7 @@ app.delete("/dashboard/college/:id", isAuthorized, async (req, res) => {
       .status(500)
       .json({ error: "An error occurred while deleting the college listing" });
   }
-
 });
-
-
-
-
 
 app.get("/", function (req, res) {
   res.send("Hello World");
