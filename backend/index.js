@@ -204,7 +204,7 @@ app.get("/dashboard", isAuthorized, (req, res) => {
 // });
 
 // colleges route
-app.get("/dashboard/college",isAuthorized, async (req, res) => {
+app.get("/dashboard/college", isAuthorized, async (req, res) => {
   try {
     const listings = await College.find();
     res.status(200).json(listings);
@@ -282,6 +282,49 @@ app.delete("/dashboard/college/:id", isAuthorized, async (req, res) => {
       .json({ error: "An error occurred while deleting the college listing" });
   }
 });
+
+// Route for bulk uploading data through an Excel file
+app.post(
+  "/dashboard/upload",
+  isAuthorized,
+  upload.single("file"),
+  async (req, res) => {
+    try {
+      // Check if a file was uploaded
+      if (!req.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+      }
+
+      // Read the Excel file
+      const workbook = XLSX.readFile(req.file.path);
+      const sheetName = workbook.SheetNames[0];
+      const worksheet = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+
+      // Iterate through the worksheet and save each row to the database
+      const bulkOps = worksheet.map((row) => ({
+        insertOne: {
+          document: row,
+        },
+      }));
+
+      if (bulkOps.length > 0) {
+        const result = await College.bulkWrite(bulkOps);
+        console.log("Bulk data uploaded successfully:", result);
+        res.status(201).json({
+          message: "Bulk data uploaded successfully",
+          insertedCount: result.insertedCount,
+        });
+      } else {
+        res.status(400).json({ message: "No data to upload" });
+      }
+    } catch (error) {
+      console.error("Error uploading bulk data:", error);
+      res
+        .status(500)
+        .json({ error: "An error occurred while uploading bulk data" });
+    }
+  }
+);
 
 app.get("/", function (req, res) {
   res.send("Hello World");

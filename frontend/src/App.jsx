@@ -49,6 +49,7 @@ import Navbar from "./components/Admin_panel/Navbar";
 import Sidebar from "./components/Admin_panel/Sidebar";
 import Error from "./components/Error";
 import Edit from "./components/Edit_form/Edit";
+import BlogPage from "./components/Blogs/BlogPage";
 
 function DashboardLayout({ children }) {
   return (
@@ -99,7 +100,7 @@ function App() {
           }
         />
         <Route
-          path="/dashboard/create-bulk"
+          path="/dashboard/upload"
           element={
             <DashboardLayout>
               <AddBulkPage />
@@ -111,6 +112,14 @@ function App() {
           element={
             <DashboardLayout>
               <Edit />
+            </DashboardLayout>
+          }
+        />
+        <Route
+          path="/dashboard/blogs"
+          element={
+            <DashboardLayout>
+              <BlogPage />
             </DashboardLayout>
           }
         />
