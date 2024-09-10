@@ -13,7 +13,7 @@ const Dashboard = () => {
     const checkAuthentication = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/dashboard",
+          "http://localhost:3000/dashboard/",
           {
             withCredentials: true, // Send cookies with the request
           }
