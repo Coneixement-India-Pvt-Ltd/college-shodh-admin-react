@@ -6,8 +6,9 @@ import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Preview from "./Preview";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
+import 'react-toastify/dist/ReactToastify.css';
 
 const steps = ["Add College Form", "Preview", "Submit"];
 
@@ -32,7 +33,6 @@ export default function HorizontalLinearStepper() {
     website: "",
   });
 
-  // form validation and error handling
   const [errors, setErrors] = React.useState({});
 
   const validateForm = () => {
@@ -51,7 +51,7 @@ export default function HorizontalLinearStepper() {
       { name: "contact", label: "Contact is required" },
       { name: "email", label: "Email is required" },
       { name: "nba", label: "NBA Approval status is required" },
-      { name: "dept", label: "Courses are required" },
+      // { name: "dept", label: "Courses are required" },
     ];
 
     const newErrors = {};
@@ -68,15 +68,13 @@ export default function HorizontalLinearStepper() {
     return Object.keys(newErrors).length === 0;
   };
 
-  // next btn click handler
   const handleNext = () => {
     if (activeStep === 0 && !validateForm()) {
-      return; // Don't proceed if validation fails
+      return;
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  // back btn click handler
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -92,8 +90,8 @@ export default function HorizontalLinearStepper() {
       nba: "",
       nirf: "",
       address: "",
-      state: "",
-      courseFees: "",
+      admission_criteria: "",
+      fees: "",
       intake: "",
       faculty: "",
       website: "",
@@ -109,27 +107,9 @@ export default function HorizontalLinearStepper() {
       [name]: value,
     }));
     console.log(e.target.name);
-    
   };
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-
-  //   // Clear the specific error for the field being changed
-  //   setErrors((prevErrors) => ({
-  //     ...prevErrors,
-  //     [name]: "",
-  //   }));
-
-  //   setFormData((prevFormData) => ({
-  //     ...prevFormData,
-  //     [name]: value,
-  //   }));
-  // };
-
   const handleSubmit = async (e) => {
-    console.log(formData);
-    console.log(e);
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -138,7 +118,7 @@ export default function HorizontalLinearStepper() {
       );
       if (response.status === 201) {
         toast.success("Listing created successfully");
-        // navigate("/dashboard");
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setFormData({
           college_name: "",
           university: "",
@@ -209,7 +189,7 @@ export default function HorizontalLinearStepper() {
               {activeStep === 0 && (
                 <Box component="form">
                   <Box className="-ml-64">
-                    <div className="grid grid-cols-1 gap-4 ml-96 mr-40 mt-8">
+                  <div className="grid grid-cols-1 gap-4 ml-96 mr-40 mt-8">
                       <div>
                         <label className="block mb-2">College Name:</label>
                         <input
@@ -1221,7 +1201,6 @@ export default function HorizontalLinearStepper() {
                 </Box>
               )}
 
-              {/* PREVIEW PAGE */}
               {activeStep === 1 && <Preview formData={formData} />}
 
               {activeStep === 2 && (
@@ -1249,29 +1228,14 @@ export default function HorizontalLinearStepper() {
                 >
                   Back
                 </Button>
-                {/* <Box sx={{ flex: "1 1 auto" }} className="mb-5" />
-                <Button
-                  onClick={handleNext}
-                  sx={{
-                    backgroundColor: "#0969FF",
-                    marginBottom: "50px",
-                    color: "white",
-                    "&:hover": {
-                      backgroundColor: "#0A30C1",
-                    },
-                  }}
-                >
-                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                </Button>
-              </Box> */}
 
                 <Box sx={{ flex: "1 1 auto" }} className="mb-5" />
                 <Button
                   onClick={(e) => {
                     if (activeStep === steps.length - 1) {
-                      handleSubmit(e); // Call handleSubmit when it's the last step
+                      handleSubmit(e);
                     } else {
-                      handleNext(); // Proceed to the next step if not the last one
+                      handleNext();
                     }
                   }}
                   sx={{
@@ -1290,6 +1254,7 @@ export default function HorizontalLinearStepper() {
           )}
         </Box>
       </div>
+      <ToastContainer />
     </div>
   );
 }

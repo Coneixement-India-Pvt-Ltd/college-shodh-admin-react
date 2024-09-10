@@ -5,12 +5,12 @@ const BlogPage = () => {
   return (
     <div>
       <Blog/>
+      {/* <Blog/> */}
+      {/* <Blog/>
       <Blog/>
       <Blog/>
       <Blog/>
-      <Blog/>
-      <Blog/>
-      <Blog/>
+      <Blog/> */}
       
     </div>
   )

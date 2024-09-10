@@ -229,7 +229,7 @@ app.post("/dashboard/create", isAuthorized, async (req, res) => {
 });
 
 //  edit route
-app.get("/dashboard/edit/:id", async (req, res) => {
+app.get("/dashboard/edit/:id", isAuthorized, async (req, res) => {
   const { id } = req.params;
   try {
     const listing = await College.findById(id);
@@ -306,6 +306,7 @@ app.post(
           document: row,
         },
       }));
+      console.log(bulkOps);
 
       if (bulkOps.length > 0) {
         const result = await College.bulkWrite(bulkOps);

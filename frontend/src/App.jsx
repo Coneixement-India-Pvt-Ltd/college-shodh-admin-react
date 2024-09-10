@@ -1,40 +1,3 @@
-// import {BrowserRouter, Routes, Route} from 'react-router-dom';
-// import Signup from './components/Auth/Signup/Signup';
-// import Login from './components/Auth/Login/Login';
-// import Home from './components/Home';
-// import ForgotPassword from './components/Auth/ForgotPassword/ForgotPassword';
-// import ResetPassword from './components/Auth/ForgotPassword/ResetPassword';
-// import AdminPage from './components/Admin_panel/AdminPage';
-// import CollegesPage from './components/Colleges/CollegesPage';
-// import CreatePage from './components/Create_form/CreatePage';
-// import UsersPage from './components/Users/UsersPage';
-// import ProductPage from './components/Products/ProductPage';
-// import AddBulkPage from './components/Add_bulk/AddBulkPage';
-// import Navbar from './components/Admin_panel/Navbar';
-// import Sidebar from './components/Admin_panel/Sidebar';
-
-// function App() {
-//   return (
-//     <BrowserRouter>
-//       <Routes>
-//         <Route path="/" element={<Home />} />
-//         <Route path="/signup" element={<Signup />} />
-//         <Route path="/login" element={<Login />} />
-//         <Route path="/forgotPassword" element={<ForgotPassword />} />
-//         <Route path="/resetPassword/:token" element={<ResetPassword />} />
-//         <Route path="/dashboard" element={<AdminPage/>} />
-//         <Route path="/dashboard/college" element={<CollegesPage/>} />
-//         <Route path="/dashboard/create" element={<CreatePage/>} />
-//         <Route path="/dashboard/create-bulk" element={<AddBulkPage/>} />
-//         {/* <Route path="/dashboard/users" element={<UsersPage/>} />
-//         <Route path="/dashboard/products" element={<ProductPage/>} /> */}
-//       </Routes>
-//     </BrowserRouter>
-//   );
-// }
-
-// export default App;
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./components/Auth/Signup/Signup";
 import Login from "./components/Auth/Login/Login";
@@ -50,6 +13,7 @@ import Sidebar from "./components/Admin_panel/Sidebar";
 import Error from "./components/Error";
 import Edit from "./components/Edit_form/Edit";
 import BlogPage from "./components/Blogs/BlogPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function DashboardLayout({ children }) {
   return (
@@ -79,7 +43,7 @@ function App() {
           path="/dashboard"
           element={
             <DashboardLayout>
-              <AdminPage />
+              <ProtectedRoute Component={AdminPage}  />
             </DashboardLayout>
           }
         />
@@ -87,7 +51,7 @@ function App() {
           path="/dashboard/college"
           element={
             <DashboardLayout>
-              <CollegesPage />
+              <ProtectedRoute Component={CollegesPage}  />
             </DashboardLayout>
           }
         />
@@ -95,7 +59,7 @@ function App() {
           path="/dashboard/create"
           element={
             <DashboardLayout>
-              <CreatePage />
+              <ProtectedRoute Component={CreatePage}  />
             </DashboardLayout>
           }
         />
@@ -103,7 +67,7 @@ function App() {
           path="/dashboard/upload"
           element={
             <DashboardLayout>
-              <AddBulkPage />
+              <ProtectedRoute Component={AddBulkPage}  />
             </DashboardLayout>
           }
         />
@@ -111,7 +75,7 @@ function App() {
           path="/dashboard/edit/:id"
           element={
             <DashboardLayout>
-              <Edit />
+              <ProtectedRoute Component={Edit}  />
             </DashboardLayout>
           }
         />
@@ -119,7 +83,7 @@ function App() {
           path="/dashboard/blogs"
           element={
             <DashboardLayout>
-              <BlogPage />
+              <ProtectedRoute Component={BlogPage}  />
             </DashboardLayout>
           }
         />
