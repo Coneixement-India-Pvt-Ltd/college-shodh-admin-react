@@ -1,18 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Signup from "./components/Auth/Signup/Signup";
-import Login from "./components/Auth/Login/Login";
-import Home from "./components/Home";
-import ForgotPassword from "./components/Auth/ForgotPassword/ForgotPassword";
-import ResetPassword from "./components/Auth/ForgotPassword/ResetPassword";
-import AdminPage from "./components/Admin_panel/AdminPage";
-import CollegesPage from "./components/Colleges/CollegesPage";
-import CreatePage from "./components/Create_form/CreatePage";
-import AddBulkPage from "./components/Add_bulk/AddBulkPage";
-import Navbar from "./components/Admin_panel/Navbar";
-import Sidebar from "./components/Admin_panel/Sidebar";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import AdminPage from "./pages/AdminPage";
+import CollegesPage from "./pages/CollegesPage";
+import CreatePage from "./pages/CreatePage";
+import AddBulkPage from "./pages/AddBulkPage";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 import Error from "./components/Error";
-import Edit from "./components/Edit_form/Edit";
-import BlogPage from "./components/Blogs/BlogPage";
+import Edit from "./pages/Edit";
+import BlogPage from "./pages/BlogPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function DashboardLayout({ children }) {
