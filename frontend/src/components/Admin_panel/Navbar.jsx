@@ -6,14 +6,12 @@ import axios from "axios";
 const Navbar = () => {
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
-
   // State to manage dropdown visibility
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   // Logout function
   const handleLogout = () => {
     axios
-      .post("http://localhost:3000/auth/logout")
+      .post("http://localhost:8080/auth/logout")
       .then((res) => {
         if (res.data.status) {
           navigate("/");

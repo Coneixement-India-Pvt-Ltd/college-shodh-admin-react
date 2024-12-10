@@ -7,7 +7,7 @@
 //   axios.defaults.withCredentials = true;
 
 //   // const handleLogout = () => {
-//   //   axios.get("http://localhost:3000/auth/logout")
+//   //   axios.get("http://localhost:8080/auth/logout")
 //   //   .then(res => {
 //   //     if(res.data.status) {
 //   //       navigate('/login')

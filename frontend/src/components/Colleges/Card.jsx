@@ -28,7 +28,7 @@ const Card = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/dashboard/college")
+      .get("http://localhost:8080/dashboard/college")
       .then((response) => {
         setColleges(response.data);
         setLoading(false); // Set loading to false after data is fetched
@@ -97,7 +97,7 @@ const Card = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/dashboard/college/${id}`);
+      await axios.delete(`http://localhost:8080/dashboard/college/${id}`);
       // Remove the deleted listing from the state
       setColleges(colleges.filter(college => college._id !== id));
       toast.success('Listing deleted successfully');
@@ -214,7 +214,7 @@ const Card = () => {
                 >
                   <Button
                     className="text-white rounded-lg p-2 w-full"
-                    style={{ backgroundColor: "#1F7FCF" }}
+                    style={{ backgroundColor: "red" }}
                   >
                     Know more
                   </Button>

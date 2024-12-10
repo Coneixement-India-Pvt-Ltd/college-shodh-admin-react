@@ -14,7 +14,7 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:3000/auth/signup", {
+    Axios.post("http://localhost:8080/auth/signup", {
       username,
       email,
       password,

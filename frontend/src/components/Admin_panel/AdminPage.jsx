@@ -13,7 +13,7 @@ const Dashboard = () => {
     const checkAuthentication = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/dashboard/",
+          "http://localhost:8080/dashboard/",
           {
             withCredentials: true, // Send cookies with the request
           }
@@ -26,7 +26,7 @@ const Dashboard = () => {
         }
       } catch (error) {
         console.error("Authentication check failed:", error);
-        navigate("/login"); // Redirect to login if there's an error
+        // navigate("/login"); // Redirect to login if there's an error
       }
     };
 
