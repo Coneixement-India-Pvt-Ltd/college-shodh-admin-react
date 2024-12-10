@@ -34,7 +34,7 @@ const Edit = () => {
     const fetchCollegeData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/dashboard/edit/${id}`
+          `http://localhost:8080/dashboard/edit/${id}`
         );
         setFormData({
           college_name: response.data.college_name || "",
@@ -64,7 +64,7 @@ const Edit = () => {
     event.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:3000/dashboard/edit/${id}`,
+        `http://localhost:8080/dashboard/edit/${id}`,
         formData
       );
       if (response.status === 200) {

@@ -11,7 +11,7 @@ const ResetPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:3000/auth/reset-password/" + token, {
+    Axios.post("http://localhost:8080/auth/reset-password/" + token, {
       password,
     })
       .then((response) => {

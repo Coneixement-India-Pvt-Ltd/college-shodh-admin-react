@@ -13,7 +13,7 @@ const Navbar = () => {
   // Logout function
   const handleLogout = () => {
     axios
-      .post("http://localhost:3000/auth/logout")
+      .post("http://localhost:8080/auth/logout")
       .then((res) => {
         if (res.data.status) {
           navigate("/");

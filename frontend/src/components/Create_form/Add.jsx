@@ -113,7 +113,7 @@ export default function HorizontalLinearStepper() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3000/dashboard/create",
+        "http://localhost:8080/dashboard/create",
         formData
       );
       if (response.status === 201) {
