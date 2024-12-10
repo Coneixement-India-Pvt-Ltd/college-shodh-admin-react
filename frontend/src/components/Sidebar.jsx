@@ -8,7 +8,7 @@ const Sidebar = () => {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    // axios.get("http://localhost:3000/auth/verify").then((res) => {
+    // axios.get("http://localhost:8080/auth/verify").then((res) => {
     //   if (res.data.status) {
     //     // navigate("/dashboard");
     //   } else {
@@ -19,7 +19,7 @@ const Sidebar = () => {
 
   // const handleLogout = () => {
   //   axios
-  //     .get("http://localhost:3000/auth/logout")
+  //     .get("http://localhost:8080/auth/logout")
   //     .then((res) => {
   //       if (res.data.status) {
   //         navigate("/");
