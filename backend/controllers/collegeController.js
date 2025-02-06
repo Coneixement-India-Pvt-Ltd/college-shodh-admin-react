@@ -66,14 +66,53 @@ export const uploadColleges = async (req, res) => {
         const sheetName = workbook.SheetNames[0];
         const worksheet = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
 
-        const bulkOps = worksheet.map((row) => ({ insertOne: { document: row } }));
+        // Preprocess data to match schema and handle missing/incorrect fields
+        const processedData = worksheet.map(row => {
+            const processedRow = {};
+
+            // Map CSV fields to schema fields
+            processedRow.college_name = row["College Name"] || null;
+            processedRow.address = row["Address"] || null;
+            processedRow.course = row["Course"] || null;
+            processedRow.university = row["University"] || null;
+            processedRow.nirf = row["nirf"] || null;
+            processedRow.naac = row["naac"] || null;
+            processedRow.nba = row["nba"] || null;
+            processedRow.fees = row["fees"] || null;
+            processedRow.admission_criteria = row["admission criteria"] || null;
+            processedRow.faculty = row["faculty"] || null;
+            processedRow.contact = row["Contact"] || null;
+            processedRow.email = row["Email"] ? row["Email"].split(",") : []; // Convert email to array
+            processedRow.website = row["Website"] || null;
+
+            // Handle intake field
+            if (row["intake"] === "N/A" || row["intake"] === "") {
+                processedRow.intake = null; // Set to null if intake is "N/A" or empty
+            } else {
+                const intakeNumber = Number(row["intake"]);
+                processedRow.intake = isNaN(intakeNumber) ? null : intakeNumber;
+            }
+
+            return processedRow;
+        });
+
+        const bulkOps = processedData.map((document) => ({
+            insertOne: { document }
+        }));
+
         if (bulkOps.length > 0) {
             const result = await College.bulkWrite(bulkOps);
-            res.status(201).json({ message: "Bulk data uploaded successfully", insertedCount: result.insertedCount });
+            res.status(201).json({
+                message: "Bulk data uploaded successfully",
+                insertedCount: result.insertedCount
+            });
         } else {
             res.status(400).json({ message: "No data to upload" });
         }
     } catch (error) {
-        res.status(500).json({ error: "An error occurred while uploading bulk data" });
+        res.status(500).json({
+            error: "An error occurred while uploading bulk data",
+            msg: error.message
+        });
     }
 };

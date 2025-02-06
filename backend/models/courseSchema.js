@@ -20,7 +20,11 @@ const collegeSchema = Schema({
   nba: String,
   fees: String,
   admission_criteria: String,
-  intake: Number,
+  intake: {
+    type: Number,
+    default: null // Optional: Set a default if needed
+    // required: false // Ensure it's not required if using null
+  },
   contact: String,
   faculty: {
     type: String,
