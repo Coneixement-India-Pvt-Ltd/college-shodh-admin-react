@@ -60,57 +60,106 @@ export const deleteCollege = async (req, res) => {
 
 export const uploadColleges = async (req, res) => {
     try {
-        if (!req.file) return res.status(400).json({ error: "No file uploaded" });
+        if (!req.file) {
+            return res.status(400).json({ error: "No file uploaded" });
+        }
 
+        // Read the Excel file
         const workbook = XLSX.readFile(req.file.path);
         const sheetName = workbook.SheetNames[0];
         const worksheet = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
 
-        // Preprocess data to match schema and handle missing/incorrect fields
+        // Define possible header variants for each schema field
+        const possibilityMapping = {
+            college_name: ["college name", "colleges", "collegename","College Name"],
+            address: ["address", "addr","Address"],
+            course: ["course", "course title","Course"],
+            dept: ["dept", "department"],
+            university: ["university","University"],
+            nirf: ["nirf", "nirf ranking"],
+            naac: ["naac", "naac rating", "Naac"],
+            nba: ["nba", "nba rating", "Nba"],
+            fees: ["fees"],
+            admission_criteria: ["admission intake", "admission criteria"],
+            contact: ["contact"],
+            email: ["email", "email/0","Email"],
+            website: ["website","Website"]
+        };
+
+        // Normalize a string: trim, lowercase, and remove spaces.
+        const normalize = str => str.trim().toLowerCase().replace(/\s/g, '');
+
+        // Build a normalized mapping: normalized variant -> schema field
+        const normalizedMapping = {};
+        for (const field in possibilityMapping) {
+            possibilityMapping[field].forEach(variant => {
+                normalizedMapping[normalize(variant)] = field;
+            });
+        }
+
+        // Allowed fields include those from possibilityMapping plus any extra (like "intake")
+        const allowedStandardFields = new Set([...Object.keys(possibilityMapping), "intake"]);
+
+        // Process each row from the worksheet
         const processedData = worksheet.map(row => {
             const processedRow = {};
 
-            // Map CSV fields to schema fields
-            processedRow.college_name = row["College Name"] || null;
-            processedRow.address = row["Address"] || null;
-            processedRow.course = row["Course"] || null;
-            processedRow.university = row["University"] || null;
-            processedRow.nirf = row["nirf"] || null;
-            processedRow.naac = row["naac"] || null;
-            processedRow.nba = row["nba"] || null;
-            processedRow.fees = row["fees"] || null;
-            processedRow.admission_criteria = row["admission criteria"] || null;
-            processedRow.faculty = row["faculty"] || null;
-            processedRow.contact = row["Contact"] || null;
-            processedRow.email = row["Email"] ? row["Email"].split(",") : []; // Convert email to array
-            processedRow.website = row["Website"] || null;
+            // Map each CSV column to a schema field using normalized headers
+            for (const key in row) {
+                const normKey = normalize(key);
+                if (normalizedMapping[normKey]) {
+                    processedRow[normalizedMapping[normKey]] = row[key];
+                } else if (allowedStandardFields.has(key)) {
+                    // If key already matches a schema field, copy it.
+                    processedRow[key] = row[key];
+                }
+                // Other columns are ignored.
+            }
 
-            // Handle intake field
-            if (row["intake"] === "N/A" || row["intake"] === "") {
-                processedRow.intake = null; // Set to null if intake is "N/A" or empty
+            // Special processing for email: convert comma-separated string into an array.
+            if (processedRow.email) {
+                processedRow.email = processedRow.email.split(",").map(email => email.trim());
             } else {
-                const intakeNumber = Number(row["intake"]);
+                processedRow.email = [];
+            }
+
+            // Process the intake field: convert to a number if possible, otherwise set to null.
+            const intakeValue = row["intake"];
+            if (intakeValue === "N/A" || intakeValue === "" || intakeValue === undefined) {
+                processedRow.intake = null;
+            } else {
+                const intakeNumber = Number(intakeValue);
                 processedRow.intake = isNaN(intakeNumber) ? null : intakeNumber;
             }
+
+            // Clean up the contact field if it contains errors.
+            if (processedRow.contact === "#ERROR!") {
+                processedRow.contact = null;
+            }
+
+            // Remove accidental MongoDB-specific fields if they exist.
+            delete processedRow["_id"];
+            delete processedRow["__v"];
 
             return processedRow;
         });
 
-        const bulkOps = processedData.map((document) => ({
+        // Prepare bulk insert operations
+        const bulkOps = processedData.map(document => ({
             insertOne: { document }
         }));
 
         if (bulkOps.length > 0) {
             const result = await College.bulkWrite(bulkOps);
-            res.status(201).json({
+            return res.status(201).json({
                 message: "Bulk data uploaded successfully",
                 insertedCount: result.insertedCount
             });
         } else {
-            res.status(400).json({ message: "No data to upload" });
+            return res.status(400).json({ message: "No data to upload" });
         }
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             error: "An error occurred while uploading bulk data",
             msg: error.message
         });
