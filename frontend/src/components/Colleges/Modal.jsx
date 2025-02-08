@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
-import "../../styles/Modal.css";
+import React, { useState, useEffect } from "react";
 
 const Modal = ({ closeModal, type }) => {
-  console.log(type);
-  
-  // Stop scrolling when the modal is open
   useEffect(() => {
-    document.body.style.overflowY = "hidden"; // Hide scroll
+    document.body.style.overflowY = "hidden";
     return () => {
-      document.body.style.overflowY = "scroll"; // Back to normal scroll (cleanup function)
+      document.body.style.overflowY = "scroll";
     };
   }, []);
 
@@ -90,19 +86,21 @@ const Modal = ({ closeModal, type }) => {
     { name: "Food Engineering and Technology", img: "./Civil.png" },
     { name: "Surface Coating Technology", img: "./Civil.png" },
     { name: "Polymer Engineering and Technology", img: "./Civil.png" },
-    { name: "Oils, Oleochemicals and Surfactants Technology", img: "./Civil.png" },
+    {
+      name: "Oils, Oleochemicals and Surfactants Technology",
+      img: "./Civil.png",
+    },
     { name: "Mining Machinery Engineering", img: "./Civil.png" },
-    { name: "Instrumentation and Control Engineering", img: "./Civil.png" },  
+    { name: "Instrumentation and Control Engineering", img: "./Civil.png" },
     { name: "Metallurgical & Materials Engg.", img: "./Civil.png" },
     { name: "Instrumentation and Control Engineering", img: "./Civil.png" },
   ];
 
-  const courses = type === "BSc" ? bscCourses : beCourses;
-  console.log("Selected courses:", courses);
-
+  // Decide which options to show based on course type
+  const courses = type.toLowerCase() === "bsc" ? bscCourses : beCourses;
 
   const [currentPage, setCurrentPage] = useState(0);
-  const coursesPerPage = 6; // Number of courses to display per page
+  const coursesPerPage = 6;
 
   const handleNext = () => {
     if ((currentPage + 1) * coursesPerPage < courses.length) {
@@ -122,23 +120,34 @@ const Modal = ({ closeModal, type }) => {
 
   return (
     <>
-      <div className="modal-wrapper" onClick={closeModal}></div>
-      <div className="modal-container relative z-10 mt-28">
-        <h1 className="font-mono">{type === "BSc" ? "B. Sc Courses" : "BE/B. Tech Courses"}</h1>
-        <div className="course-grid">
+      <div
+        className="modal-wrapper fixed inset-0 bg-black opacity-50"
+        onClick={() => closeModal(null)}
+      ></div>
+      <div className="modal-container relative z-10 mt-28 p-4 bg-white rounded shadow-lg">
+        <h1 className="font-mono">
+          {type.toLowerCase() === "bsc"
+            ? "B. Sc Courses"
+            : "BE/B. Tech Courses"}
+        </h1>
+        <div className="course-grid grid grid-cols-3 gap-4 mt-4">
           {currentCourses.map((course, index) => (
-            <button className="model-btn" onClick={closeModal} key={index}>
-              <img src={course.img} alt={course.name} />
+            <button
+              className="model-btn flex flex-col items-center"
+              onClick={() => closeModal(course.name)}
+              key={index}
+            >
+              <img src={course.img} alt={course.name} className="w-16 h-16" />
               <span className="font-normal">{course.name}</span>
             </button>
           ))}
         </div>
-        <div className="pagination">
+        <div className="pagination flex justify-between mt-4">
           <button onClick={handlePrev} disabled={currentPage === 0}>
-            &lt; Prev
+            {"<"} Prev
           </button>
           <button onClick={handleNext} disabled={endIndex >= courses.length}>
-            Next &gt;
+            Next {">"}
           </button>
         </div>
       </div>
@@ -147,4 +156,3 @@ const Modal = ({ closeModal, type }) => {
 };
 
 export default Modal;
-

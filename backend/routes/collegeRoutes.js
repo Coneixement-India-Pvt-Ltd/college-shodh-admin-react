@@ -29,13 +29,14 @@ const getFilteredColleges = async (req, res) => {
         res.status(500).json({ error: "Server Error" });
     }
 };
-router.get("/", isAuthorized, getDashboard);
-router.get("/college", isAuthorized, getColleges);
+// router.get("/", isAuthorized, getDashboard);
+// router.get("/college", isAuthorized, getColleges);
+router.get("/college", getFilteredColleges);
 router.post("/create", isAuthorized, createCollege);
 router.get("/edit/:id", isAuthorized, getCollegeById);
 router.put("/edit/:id", isAuthorized, updateCollege);
 router.delete("/college/:id", isAuthorized, deleteCollege);
 router.post("/upload", isAuthorized, upload.single("file"), uploadColleges);
-// router.get("/", getFilteredColleges);
+router.get("/", getFilteredColleges);
 
 export default router;
