@@ -1,17 +1,14 @@
-
-import React from 'react';
+import React from "react";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = [];
-  const maxPageNumbersToShow = 5; // Number of page numbers to display at once
+  const maxPageNumbersToShow = 5;
   let startPage, endPage;
 
   if (totalPages <= maxPageNumbersToShow) {
-    // If total pages are less than or equal to maxPageNumbersToShow, show all pages
     startPage = 1;
     endPage = totalPages;
   } else {
-    // Determine start and end page based on the current page
     const middlePage = Math.ceil(maxPageNumbersToShow / 2);
     if (currentPage <= middlePage) {
       startPage = 1;
@@ -35,7 +32,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : ''}`}
+          className={`inline-flex items-center justify-center rounded border border-gray-100 bg-white text-gray-900 ${
+            currentPage === 1 ? "cursor-not-allowed opacity-50" : ""
+          }`}
         >
           <span className="sr-only">Prev Page</span>
           <svg
@@ -53,11 +52,15 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         </button>
       </li>
 
-      {pageNumbers.map(number => (
+      {pageNumbers.map((number) => (
         <li key={number}>
           <button
             onClick={() => onPageChange(number)}
-            className={`block size-8 rounded border text-center leading-8 ${currentPage === number ? 'border-blue-600 bg-blue-600 text-white' : 'border-gray-100 bg-white text-gray-900'}`}
+            className={`block rounded border text-center leading-8 ${
+              currentPage === number
+                ? "border-blue-600 bg-blue-600 text-white"
+                : "border-gray-100 bg-white text-gray-900"
+            }`}
           >
             {number}
           </button>
@@ -68,7 +71,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 ${currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''}`}
+          className={`inline-flex items-center justify-center rounded border border-gray-100 bg-white text-gray-900 ${
+            currentPage === totalPages ? "cursor-not-allowed opacity-50" : ""
+          }`}
         >
           <span className="sr-only">Next Page</span>
           <svg
