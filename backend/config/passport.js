@@ -1,41 +1,26 @@
 import passport from "passport";
-import { Strategy as LocalStrategy } from "passport-local";
-import bcrypt from "bcryptjs";
+import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 import User from "../models/User.js";
+import dotenv from "dotenv";
 
-const configurePassport = (passport) => {
-    passport.use(
-        new LocalStrategy(
-            {
-                usernameField: "email",
-                passwordField: "password",
-            },
-            async (email, password, done) => {
-                try {
-                    const user = await User.findOne({ email });
-                    if (!user) return done(null, false, { message: "Incorrect username." });
+dotenv.config();
 
-                    const isMatch = await bcrypt.compare(password, user.password);
-                    if (!isMatch) return done(null, false, { message: "Incorrect password." });
-
-                    return done(null, user);
-                } catch (err) {
-                    return done(err);
-                }
-            }
-        )
-    );
-
-    passport.serializeUser((user, done) => done(null, user.id));
-
-    passport.deserializeUser(async (id, done) => {
-        try {
-            const user = await User.findById(id);
-            done(null, user);
-        } catch (err) {
-            done(err);
-        }
-    });
+const opts = {
+    jwtFromRequest: ExtractJwt.fromExtractors([
+        (req) => req?.cookies?.token, // Extract JWT from HTTP-only cookie
+    ]),
+    secretOrKey: process.env.JWT_SECRET,
 };
 
-export default configurePassport;
+passport.use(
+    new JwtStrategy(opts, async (jwt_payload, done) => {
+        try {
+            const user = await User.findById(jwt_payload.id);
+            return user ? done(null, user) : done(null, false);
+        } catch (err) {
+            return done(err, false);
+        }
+    })
+);
+
+export default passport;

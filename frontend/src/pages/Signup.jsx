@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/Signup.css";
 import Axios from "axios";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -12,31 +12,29 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:8080/auth/signup", {
-      username,
-      email,
-      password,
-    })
-      .then((response) => {
-        if (response.data.status) {
-          //alert("Signup successful. Please login to continue.");
-          toast.success("Signup Successfully");
-          //console.log(response);
-          navigate("/login");
-        } 
-        else {
-          // setError("Something went wrong. Please try again.");
-          console.log(response.data);
-          alert(response.data.message);
-        }
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-        setError("An error occurred. Please try again."); 
-        alert(error.response.data.message);
-      });      
+    try {
+      const response = await Axios.post("http://localhost:8080/auth/signup", {
+        username,
+        email,
+        password,
+      });
+
+      if (response.data.status) {
+        toast.success("Signup Successfully");
+        navigate("/login");
+      } else {
+        console.log(response.data);
+        alert(response.data.message);
+      }
+    } catch (error) {
+      console.log(error.response?.data);
+      setError(
+        error.response?.data?.message || "An error occurred. Please try again."
+      );
+      alert(error.response?.data?.message || "An error occurred.");
+    }
   };
 
   return (
@@ -76,8 +74,7 @@ const Signup = () => {
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl">
             <div className="relative -mt-16 block lg:hidden">
-
-            <a className="block text-white" href="#">
+              <a className="block text-white" href="#">
                 <span className="sr-only">Home</span>
                 <img
                   src="./collegeShodh.png"
@@ -99,7 +96,9 @@ const Signup = () => {
 
             <div className="sign-up-container">
               <form action="" className="sign-up-form" onSubmit={handleSubmit}>
-                <h2 className="mb-5 text-xl font-serif font-semibold">Sign Up</h2>
+                <h2 className="mb-5 text-xl font-serif font-semibold">
+                  Sign Up
+                </h2>
 
                 {error && <p className="text-red-500">{error}</p>}
 
@@ -148,13 +147,7 @@ const Signup = () => {
         </main>
       </div>
     </section>
-
-    
-
-
-
   );
 };
 
 export default Signup;
-
