@@ -3,37 +3,24 @@ import "../styles/Signup.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-
+import { useAuth } from "../context/AuthContext";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/auth/login", {
-        email,
-        password,
-      });
-
-      if (response.data.status) {
-         toast.success("Login Successfully");
-        // Save the JWT token to local storage or cookies
-        localStorage.setItem("token", response.data.token);
-        //alert("login Successfully");
-
-        navigate("/dashboard");
-      } else {
-        setError("Invalid email or password. Please try again.");
-        toast.error("Invalid Email or Password");
-        navigate("/login");
-      }
+      await login({ email, password });
+      toast.success("Login Successfully");
+      navigate("/dashboard");
     } catch (err) {
       console.error(err.response?.data || err.message);
       setError("An error occurred. Please try again.");
+      toast.error("Invalid Email or Password");
     }
   };
 
