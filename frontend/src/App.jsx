@@ -4,6 +4,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { lazy, Suspense } from "react";
 import DashboardLayout from "./components/DashboardLayout";
 import ErrorBoundary from "./components/ErrorBoundary";
+import { Toaster } from "react-hot-toast";
+import Loader from "./components/Loader";
 
 // Lazy-loaded pages
 const Signup = lazy(() => import("./pages/Signup"));
@@ -22,8 +24,9 @@ const Error = lazy(() => import("./components/Error"));
 const App = () => {
   return (
     <AuthProvider>
+       <Toaster /> 
       <Router>
-        <Suspense fallback={<div className="text-center p-10">Loading...</div>}>
+        <Suspense fallback={<Loader/>}>
           <ErrorBoundary>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -51,7 +54,7 @@ const App = () => {
                   <DashboardLayout>
                     <ProtectedRoute
                       element={CollegesPage}
-                      allowedRoles={["admin", "moderator"]}
+                      allowedRoles={["admin", "editor", "viewer"]}
                     />
                   </DashboardLayout>
                 }
@@ -62,7 +65,7 @@ const App = () => {
                   <DashboardLayout>
                     <ProtectedRoute
                       element={CreatePage}
-                      allowedRoles={["admin", "moderator"]}
+                      allowedRoles={["admin", "editor"]}
                     />
                   </DashboardLayout>
                 }
@@ -84,7 +87,7 @@ const App = () => {
                   <DashboardLayout>
                     <ProtectedRoute
                       element={Edit}
-                      allowedRoles={["admin", "moderator"]}
+                      allowedRoles={["admin", "editor"]}
                     />
                   </DashboardLayout>
                 }

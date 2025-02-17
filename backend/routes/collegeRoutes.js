@@ -1,4 +1,6 @@
 import express from "express";
+import passport from "../config/passport.js";
+import {checkRole} from '../middlewares/authMiddleware.js'// RBAC Middleware
 import {
     getColleges,
     createCollege,
@@ -29,14 +31,19 @@ const getFilteredColleges = async (req, res) => {
         res.status(500).json({ error: "Server Error" });
     }
 };
-router.get("/",  getDashboard);
+router.get("/" ,getDashboard);
 // router.get("/college", isAuthorized, getColleges);
-router.get("/college", getFilteredColleges);
-router.post("/create", isAuthorized, createCollege);
-router.get("/edit/:id", isAuthorized, getCollegeById);
-router.put("/edit/:id", isAuthorized, updateCollege);
-router.delete("/college/:id", isAuthorized, deleteCollege);
-router.post("/upload", isAuthorized, upload.single("file"), uploadColleges);
+router.get("/college",passport.authenticate("jwt", { session: false }), checkRole(["admin", "editor", "viewer"]), getFilteredColleges);
+
+router.post("/create",passport.authenticate("jwt", { session: false }), checkRole(["admin", "editor"]), isAuthorized, createCollege);
+
+router.get("/edit/:id", passport.authenticate("jwt", { session: false }), checkRole(["admin", "editor", "viewer"]),isAuthorized, getCollegeById);
+
+router.put("/edit/:id", passport.authenticate("jwt", { session: false }), checkRole(["admin"]),isAuthorized, updateCollege);
+
+router.delete("/college/:id", passport.authenticate("jwt", { session: false }), checkRole(["admin"]),isAuthorized, deleteCollege);
+
+router.post("/upload", passport.authenticate("jwt", { session: false }), checkRole(["admin", "editor"]),isAuthorized, upload.single("file"), uploadColleges);
 
 
 export default router;
