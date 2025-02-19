@@ -8,12 +8,15 @@ import { FaRegBuilding,  FaPhoneAlt } from "react-icons/fa";
 import { PiStudentFill } from "react-icons/pi";
 import { IoNewspaperOutline } from "react-icons/io5";
 
-const Card = ({ colleges }) => {
+const Card = ({ colleges, setColleges }) => { // Accept setColleges from parent
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:8080/dashboard/college/${id}`);
       toast.success("Listing deleted successfully");
-      // Optionally, trigger a refresh (via parent) after deletion.
+
+      // Remove deleted college from state
+      setColleges((prevColleges) => prevColleges.filter(college => college._id !== id));
+      
     } catch (error) {
       console.error("Error deleting listing:", error);
       toast.error("Failed to delete listing");

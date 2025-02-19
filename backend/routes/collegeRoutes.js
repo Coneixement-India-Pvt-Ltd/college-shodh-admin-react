@@ -39,11 +39,11 @@ router.post("/create",passport.authenticate("jwt", { session: false }), checkRol
 
 router.get("/edit/:id", passport.authenticate("jwt", { session: false }), checkRole(["admin", "editor", "viewer"]),isAuthorized, getCollegeById);
 
-router.put("/edit/:id", passport.authenticate("jwt", { session: false }), checkRole(["admin"]),isAuthorized, updateCollege);
+router.put("/edit/:id", passport.authenticate("jwt", { session: false }), checkRole(["admin", "editor", "viewer"]),isAuthorized, updateCollege);
 
-router.delete("/college/:id", passport.authenticate("jwt", { session: false }), checkRole(["admin"]),isAuthorized, deleteCollege);
+router.delete("/college/:id", passport.authenticate("jwt", { session: false }), checkRole(["admin", "editor", "viewer"]),isAuthorized, deleteCollege);
 
-router.post("/upload", passport.authenticate("jwt", { session: false }), checkRole(["admin", "editor"]),isAuthorized, upload.single("file"), uploadColleges);
+router.post("/upload", passport.authenticate("jwt", { session: false }), checkRole(["admin", "editor", "viewer"]),isAuthorized, upload.single("file"), uploadColleges);
 
 
 export default router;

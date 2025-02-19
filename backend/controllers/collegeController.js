@@ -51,6 +51,7 @@ export const deleteCollege = async (req, res) => {
             return res.status(400).json({ error: "Invalid college listing ID" });
         }
         const deletedCollege = await College.findByIdAndDelete(req.params.id);
+        console.log(req.params.id)
         if (!deletedCollege) return res.status(404).json({ error: "College listing not found" });
         res.status(200).json({ message: "Listing deleted successfully" });
     } catch (err) {

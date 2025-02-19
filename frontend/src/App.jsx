@@ -43,7 +43,7 @@ const App = () => {
                   <DashboardLayout>
                     <ProtectedRoute
                       element={AdminPage}
-                      allowedRoles={["admin","viewer"]}
+                      allowedRoles={["admin", "editor", "viewer"]}
                     />
                   </DashboardLayout>
                 }
@@ -65,7 +65,7 @@ const App = () => {
                   <DashboardLayout>
                     <ProtectedRoute
                       element={CreatePage}
-                      allowedRoles={["admin", "editor"]}
+                      allowedRoles={["admin", "editor", "viewer"]}
                     />
                   </DashboardLayout>
                 }
@@ -76,7 +76,7 @@ const App = () => {
                   <DashboardLayout>
                     <ProtectedRoute
                       element={AddBulkPage}
-                      allowedRoles={["admin"]}
+                      allowedRoles={["admin", "editor", "viewer"]}
                     />
                   </DashboardLayout>
                 }
@@ -87,7 +87,7 @@ const App = () => {
                   <DashboardLayout>
                     <ProtectedRoute
                       element={Edit}
-                      allowedRoles={["admin", "editor"]}
+                      allowedRoles={["admin", "editor", "viewer"]}
                     />
                   </DashboardLayout>
                 }
@@ -98,7 +98,7 @@ const App = () => {
                   <DashboardLayout>
                     <ProtectedRoute
                       element={BlogPage}
-                      allowedRoles={["admin", "editor"]}
+                      allowedRoles={["admin", "editor", "viewer"]}
                     />
                   </DashboardLayout>
                 }

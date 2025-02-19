@@ -76,7 +76,7 @@ const CollegesPage = () => {
       {warning && (
         <div className="text-center my-4 text-orange-600">{warning}</div>
       )}
-      <Card colleges={colleges} />
+      <Card colleges={colleges} setColleges={setColleges}/>
       <Pagination
         currentPage={filters.page}
         totalPages={Math.ceil(totalCount / filters.limit)}
