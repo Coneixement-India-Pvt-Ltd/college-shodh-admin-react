@@ -7,11 +7,14 @@ import { FaRegBuilding,  FaPhoneAlt } from "react-icons/fa";
 // import { FaRegBuilding, FaPeopleGroup, FaPhoneAlt } from "react-icons/fa";
 import { PiStudentFill } from "react-icons/pi";
 import { IoNewspaperOutline } from "react-icons/io5";
+import { BASE_URL } from "../../constants.js";
+
+
 
 const Card = ({ colleges, setColleges }) => { // Accept setColleges from parent
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/dashboard/college/${id}`);
+      await axios.delete(`${BASE_URL}/dashboard/college/${id}`);
       toast.success("Listing deleted successfully");
 
       // Remove deleted college from state

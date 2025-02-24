@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { BASE_URL } from "../constants.js";
+
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -13,7 +15,7 @@ const Navbar = () => {
   // Logout function
   const handleLogout = () => {
     axios
-      .post("http://localhost:8080/auth/logout")
+      .post(`${BASE_URL}/auth/logout`)
       .then((res) => {
         if (res.data.status) {
           navigate("/");

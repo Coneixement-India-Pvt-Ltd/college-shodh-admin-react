@@ -2,13 +2,15 @@ import React, { useEffect } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { BASE_URL } from "../constants.js";
+
 
 const Sidebar = () => {
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    // axios.get("http://localhost:8080/auth/verify").then((res) => {
+    // axios.get("BASE_URL/auth/verify").then((res) => {
     //   if (res.data.status) {
     //     // navigate("/dashboard");
     //   } else {
@@ -19,7 +21,7 @@ const Sidebar = () => {
 
   // const handleLogout = () => {
   //   axios
-  //     .get("http://localhost:8080/auth/logout")
+  //     .get("BASE_URL/auth/logout")
   //     .then((res) => {
   //       if (res.data.status) {
   //         navigate("/");

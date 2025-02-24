@@ -4,6 +4,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import DashboardHome from "../components/Dashboard/DashboardHome";
+import { BASE_URL } from "../constants.js";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Dashboard = () => {
     const checkAuthentication = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/dashboard/",
+          `${BASE_URL}/dashboard/`,
           {
             withCredentials: true, // Send cookies with the request
           }

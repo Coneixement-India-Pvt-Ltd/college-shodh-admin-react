@@ -1,6 +1,8 @@
 import { createContext, useContext } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { BASE_URL } from "../constants.js";
+
 
 const AuthContext = createContext(null);
 
@@ -13,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
   // Fetch User Function
   const fetchUser = async () => {
-    const { data } = await axios.get("http://localhost:8080/auth/me", {
+    const { data } = await axios.get(`${BASE_URL}/auth/me`, {
       withCredentials: true,
     });
     console.log("user",data.user)
@@ -30,7 +32,7 @@ export const AuthProvider = ({ children }) => {
   // Login Mutation
   const loginMutation = useMutation({
     mutationFn: async (credentials) =>
-      axios.post("http://localhost:8080/auth/login", credentials, {
+      axios.post(`${BASE_URL}/auth/login`, credentials, {
         withCredentials: true,
       }),
     onSuccess: () => {
@@ -42,7 +44,7 @@ export const AuthProvider = ({ children }) => {
   const logoutMutation = useMutation({
     mutationFn: async () =>
       axios.post(
-        "http://localhost:8080/auth/logout",
+        `${BASE_URL}/auth/logout`,
         {},
         { withCredentials: true }
       ),

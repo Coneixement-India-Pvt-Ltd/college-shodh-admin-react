@@ -3,6 +3,8 @@ import "../styles/Signup.css";
 import Axios from "axios";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../constants.js";
+
 
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -15,7 +17,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await Axios.post("http://localhost:8080/auth/signup", {
+      const response = await Axios.post(`${BASE_URL}/auth/signup`, {
         username,
         email,
         password,
