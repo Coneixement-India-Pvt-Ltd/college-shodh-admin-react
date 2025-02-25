@@ -3,6 +3,8 @@ import axios from "axios";
 import Filter from "../components/Colleges/Filter";
 import Card from "../components/Colleges/Card";
 import Pagination from "../components/Colleges/Pagination";
+import { BASE_URL } from "../constants.js";
+
 
 const CollegesPage = () => {
   // Consolidated filter state (matches APIFeatures query parameters)
@@ -39,7 +41,7 @@ const CollegesPage = () => {
         );
 
         const response = await axios.get(
-          "http://localhost:8080/dashboard/college",
+          `${BASE_URL}/dashboard/college`,
           {
             params: filteredParams,
           }

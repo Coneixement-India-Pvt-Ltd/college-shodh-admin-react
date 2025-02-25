@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../styles/Signup.css";
 import Axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { BASE_URL } from "../constants.js";
+
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
@@ -11,7 +13,7 @@ const ResetPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:8080/auth/reset-password/" + token, {
+    Axios.post(`${BASE_URL}/auth/reset-password/` + token, {
       password,
     })
       .then((response) => {

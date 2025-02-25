@@ -9,6 +9,7 @@ import Preview from "./Preview";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from "../../constants.js";
 
 const steps = ["Add College Form", "Preview", "Submit"];
 
@@ -113,7 +114,7 @@ export default function HorizontalLinearStepper() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8080/dashboard/create",
+        `${BASE_URL}/dashboard/create`,
         formData
       );
       if (response.status === 201) {

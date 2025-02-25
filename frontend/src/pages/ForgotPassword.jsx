@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "../styles/Signup.css";
 import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../constants.js";
+
+
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +13,7 @@ const ForgotPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:8080/auth/forgot-password", {
+    Axios.post(`${BASE_URL}/auth/forgot-password`, {
       email,
     })
       .then((response) => {

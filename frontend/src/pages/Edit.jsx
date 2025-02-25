@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../constants.js";
+
 
 const Edit = () => {
   const { id } = useParams();
@@ -34,7 +36,7 @@ const Edit = () => {
     const fetchCollegeData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/dashboard/edit/${id}`
+          `${BASE_URL}/dashboard/edit/${id}`
         );
         setFormData({
           college_name: response.data.college_name || "",
@@ -64,7 +66,7 @@ const Edit = () => {
     event.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:8080/dashboard/edit/${id}`,
+        `${BASE_URL}/dashboard/edit/${id}`,
         formData
       );
       if (response.status === 200) {

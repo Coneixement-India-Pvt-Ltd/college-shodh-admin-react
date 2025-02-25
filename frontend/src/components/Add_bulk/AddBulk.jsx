@@ -48,7 +48,7 @@
 
 //     try {
 //       const response = await axios.post(
-//         "http://localhost:8080/auth/upload",
+//         "BASE_URL/auth/upload",
 //         formData,
 //         {
 //           headers: {
@@ -181,7 +181,7 @@
 
 //     try {
 //       const response = await axios.post(
-//         "http://localhost:8080/dashboard/create-bulk",
+//         "BASE_URL/dashboard/create-bulk",
 //         formData,
 //         {
 //           headers: {
@@ -254,6 +254,8 @@ import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { AiOutlineFileExcel } from "react-icons/ai";
 import axios from "axios";
+import { BASE_URL } from "../../constants.js";
+
 
 const Create = () => {
   // to store and display the name of files uploaded
@@ -296,7 +298,7 @@ const Create = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/dashboard/upload", // Ensure this matches your backend route
+        `${BASE_URL}/dashboard/upload`, // Ensure this matches your backend route
         formData,
         {
           headers: {
