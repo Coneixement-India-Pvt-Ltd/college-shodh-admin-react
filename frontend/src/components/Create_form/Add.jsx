@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BASE_URL } from "../../constants.js";
 
 const steps = ["Add College Form", "Preview", "Submit"];
+const nirfCategories = ["Engineering", "Autonomous", "Medical", "Law", "Management", "Pharmacy", "Overall"];
 
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -22,7 +23,8 @@ export default function HorizontalLinearStepper() {
     course: "",
     dept: "",
     university: "",
-    nirf: "",
+    nirf: 0,
+    nirf_category : "",
     naac: "",
     nba: "",
     fees: "",
@@ -43,6 +45,7 @@ export default function HorizontalLinearStepper() {
       { name: "course", label: "Program is required" },
       { name: "naac", label: "NAAC is required" },
       { name: "nirf", label: "NIRF is required" },
+      {name : "nirf_category", label : "NIRF category is required"},
       { name: "admission_criteria", label: "Admission criteria is required" },
       { name: "address", label: "Address is required" },
       { name: "fees", label: "Course Fees are required" },
@@ -89,7 +92,8 @@ export default function HorizontalLinearStepper() {
       dept: "",
       naac: "",
       nba: "",
-      nirf: "",
+      nirf: 0,
+      nirf_category : "",
       address: "",
       admission_criteria: "",
       fees: "",
@@ -127,7 +131,8 @@ export default function HorizontalLinearStepper() {
           dept: "",
           naac: "",
           nba: "",
-          nirf: "",
+          nirf: 0,
+          nirf_category : "",
           address: "",
           admission_criteria: "",
           fees: "",
@@ -986,6 +991,28 @@ export default function HorizontalLinearStepper() {
                         {errors.nirf && (
                           <Typography color="error" variant="body2">
                             {errors.nirf}
+                          </Typography>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="block mb-2">NIRF Category:</label>
+                        <select
+                          name="nirf_category"
+                          value={formData.nirf_category}
+                          onChange={handleChange}
+                          className="border w-full p-2 rounded"
+                          required>
+                          <option value="">Select NIRF Category</option>
+                          {nirfCategories.map((category, index) => (
+                            <option key={index} value={category}>
+                              {category}
+                            </option>
+                          ))}
+                        </select>
+                        {errors.nirf_category && (
+                          <Typography color="error" variant="body2">
+                            {errors.nirf_category}
                           </Typography>
                         )}
                       </div>
