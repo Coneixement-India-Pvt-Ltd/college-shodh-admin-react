@@ -1,17 +1,20 @@
-// const mongoose = require("mongoose");
 import mongoose from "mongoose";
-import express from "express";
 const Schema = mongoose.Schema;
 
-const collegeSchema = Schema({
+const collegeSchema = new Schema({
   college_name: String,
   address: String,
   course: String,
   dept: String,
   university: String,
   nirf: {
+    type: Number,
+    default: 0,
+  },
+  nirf_category: {
     type: String,
-    default: null,
+    default: "",
+    enum: ["Engineering", "Autonomous", "Medical", "Management", "Pharmacy"],
   },
   naac: {
     type: String,
@@ -22,8 +25,7 @@ const collegeSchema = Schema({
   admission_criteria: String,
   intake: {
     type: Number,
-    default: null // Optional: Set a default if needed
-    // required: false // Ensure it's not required if using null
+    default: null,
   },
   contact: String,
   faculty: {

@@ -35,7 +35,7 @@ router.get("/" ,getDashboard);
 // router.get("/college", isAuthorized, getColleges);
 router.get("/college",passport.authenticate("jwt", { session: false }), checkRole(["admin", "editor", "viewer"]), getFilteredColleges);
 
-router.post("/create",passport.authenticate("jwt", { session: false }), checkRole(["admin", "editor"]), isAuthorized, createCollege);
+router.post("/create",passport.authenticate("jwt", { session: false }), checkRole(["admin", "editor", "viewer"]), isAuthorized, createCollege);
 
 router.get("/edit/:id", passport.authenticate("jwt", { session: false }), checkRole(["admin", "editor", "viewer"]),isAuthorized, getCollegeById);
 
